@@ -39,7 +39,7 @@ script respectively:
 
 ```sh
 curl --remote-name https://raw.githubusercontent.com/monfresh/laptop/master/mac
-cat mac
+less -N mac
 bash mac 2>&1 | tee ~/laptop.log && source ~/.rvm/scripts/rvm
 ```
 
