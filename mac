@@ -152,6 +152,16 @@ brew services restart postgresql
 
 brew_install_or_upgrade 'phantomjs'
 
+brew_install_or_upgrade 'mtr'
+
+brew_install_or_upgrade 'wget'
+
+brew_install_or_upgrade 'homebrew/dupes/grep'
+
+brew_install_or_upgrade 'homebrew/dupes/openssh'
+
+brew_install_or_upgrade 'mackup'
+
 brew_install_or_upgrade 'hub'
 # shellcheck disable=SC2016
 append_to_file "$HOME/.zshrc" 'eval "$(hub alias -s)"'
@@ -192,9 +202,37 @@ brew_install_or_upgrade 'brew-cask'
 
 brew_tap 'caskroom/versions'
 
+brew_cask_install '1password'
+brew_cask_install 'alfred'
+brew_cask_install 'app-tamer'
+brew_cask_install 'atom'
+brew_cask_install 'bartender'
+brew_cask_install 'bettertouchtool'
+brew_cask_install 'box-sync'
+brew_cask_install 'cleanmymac'
+brew_cask_install 'cocktail'
+brew_cask_install 'dropbox'
 brew_cask_install 'flux'
+brew_cask_install 'firefox'
+brew_cask_install 'gas-mask'
 brew_cask_install 'github-desktop'
+brew_cask_install 'google-chrome'
+brew_cask_install 'google-hangouts'
+brew_cask_install 'hazel'
+brew_cask_install 'insync'
+brew_cask_install 'istat-menus'
+brew_cask_install 'iterm2'
+brew_cask_install 'java'
+brew_cask_install 'moom'
+brew_cask_install 'mindnode-pro'
+brew_cask_install 'owasp-zap'
+brew_cask_install 'postman'
+brew_cask_install 'skype'
 brew_cask_install 'sublime-text3'
+brew_cask_install 'textexpander'
+brew_cask_install 'vlc'
+
+#End of Brew Cask Install
 
 if [ -f "$HOME/.laptop.local" ]; then
   . "$HOME/.laptop.local"
@@ -218,5 +256,13 @@ if app_is_installed 'GitHub'; then
 elif [ ! -f "$HOME/.ssh/github_rsa.pub" ]; then
   open ~/Applications/GitHub\ Desktop.app
 fi
+
+#Install Ack
+fancy_echo 'Installing Ack...'
+curl http://beyondgrep.com/ack-2.14-single-file > ~/bin/ack && chmod 0755 !#:3
+
+#Update Apps Config File with mackup
+fancy_echo 'Updating Apps Config with Mackup...'
+mackup backup
 
 fancy_echo 'All done!'
