@@ -152,6 +152,16 @@ brew services restart postgresql
 
 brew_install_or_upgrade 'phantomjs'
 
+brew_install_or_upgrade 'mtr'
+
+brew_install_or_upgrade 'wget'
+
+brew_install_or_upgrade 'homebrew/dupes/grep'
+
+brew_install_or_upgrade 'homebrew/dupes/openssh'
+
+brew_install_or_upgrade 'mackup'
+
 brew_install_or_upgrade 'hub'
 # shellcheck disable=SC2016
 append_to_file "$HOME/.zshrc" 'eval "$(hub alias -s)"'
@@ -195,6 +205,7 @@ brew_tap 'caskroom/versions'
 brew_cask_install '1password'
 brew_cask_install 'alfred'
 brew_cask_install 'app-tamer'
+brew_cask_install 'atom'
 brew_cask_install 'bartender'
 brew_cask_install 'bettertouchtool'
 brew_cask_install 'box-sync'
@@ -245,5 +256,13 @@ if app_is_installed 'GitHub'; then
 elif [ ! -f "$HOME/.ssh/github_rsa.pub" ]; then
   open ~/Applications/GitHub\ Desktop.app
 fi
+
+#Install Ack
+fancy_echo 'Installing Ack...'
+curl http://beyondgrep.com/ack-2.14-single-file > ~/bin/ack && chmod 0755 !#:3
+
+#Update Apps Config File with mackup
+fancy_echo 'Updating Apps Config with Mackup...'
+mackup backup
 
 fancy_echo 'All done!'
