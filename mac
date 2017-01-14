@@ -222,11 +222,11 @@ if [ -f "$HOME/.laptop.local" ]; then
 fi
 
 no_prompt_customizations_in_shell_file() {
-  ! grep -qs -e ".oh-my-zsh" -e "PS1=" -e "precmd" -e "PROMPT=" "$shell_file"
+  ! grep -qs -e "PS1=" -e "precmd" -e "PROMPT=" "$shell_file"
 }
 
 no_zsh_frameworks() {
-  [ ! -f "$HOME/.oh-my-zsh" ] && [ ! -f "$HOME/.zpresto" ] && [ ! -f "$HOME/.zim" ] && [ ! -f "$HOME/.zplug" ]
+  [ ! -d "$HOME/.oh-my-zsh" ] && [ ! -d "$HOME/.zpresto" ] && [ ! -d "$HOME/.zim" ] && [ ! -d "$HOME/.zplug" ]
 }
 
 if [ -z "$CI" ] && no_zsh_frameworks && no_prompt_customizations_in_shell_file; then
