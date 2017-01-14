@@ -126,6 +126,8 @@ switch_to_latest_ruby() {
   chruby "ruby-$(latest_installed_ruby)"
 }
 
+append_to_file "$shell_file" "alias laptop='curl -s https://raw.githubusercontent.com/monfresh/laptop/master/laptop | sh -'"
+
 # shellcheck disable=SC2016
 append_to_file "$shell_file" 'export PATH="$HOME/.bin:$PATH"'
 
@@ -159,7 +161,13 @@ else
 fi
 
 fancy_echo "Installing formulas and casks from the Brewfile ..."
-brew bundle
+if brew bundle --file="$HOME/Brewfile"; then
+  fancy_echo "All formulas and casks were installed successfully."
+else
+  fancy_echo "Some formulas or casks failed to install."
+  echo "This is usually due to one of the Mac apps being already installed,"
+  echo "in which case, you can ignore these errors."
+fi
 
 # shellcheck disable=SC2016
 append_to_file "$shell_file" 'eval "$(hub alias -s)"'

@@ -2,7 +2,8 @@ Laptop
 ======
 [![Build Status](https://travis-ci.org/monfresh/laptop.svg)](https://travis-ci.org/monfresh/laptop)
 
-Laptop is a script to set up an OS X computer for web development.
+Laptop is a script to set up an OS X computer for web development, and to keep
+it up to date.
 
 It can be run multiple times on the same machine safely. It installs,
 upgrades, or skips packages based on what is already installed on the machine.
@@ -35,14 +36,10 @@ keyboard shortcut for invoking Spotlight is `command-Space`. Once Spotlight
 is up, just start typing the first few letters of the app you are looking for,
 and once it appears, press `return` to launch it.
 
-In your Terminal window, copy and paste each of these three commands one at a
-time, then press `return` after each one. The first two commands download the
-files the script needs to run, and the third command executes the script.
+In your Terminal window, copy and paste the command below, then press `return`.
 
 ```sh
-curl --remote-name https://raw.githubusercontent.com/monfresh/laptop/master/mac
-curl --remote-name https://raw.githubusercontent.com/monfresh/laptop/master/Brewfile
-bash mac 2>&1 | tee ~/laptop.log && source ~/.rvm/scripts/rvm
+curl -s https://raw.githubusercontent.com/monfresh/laptop/master/laptop | sh -
 ```
 
 The [script](https://github.com/monfresh/laptop/blob/master/mac) itself is
@@ -58,6 +55,10 @@ need to push code to GitHub.
 **Once the script is done, quit and relaunch Terminal.**
 
 More [detailed instructions with a video][video] are available in the Wiki.
+
+It is highly recommended to run the script regularly to keep your computer up
+to date. Once the script has been installed, you'll be able to run it at your
+convenience by typing `laptop` and pressing `return` in your Terminal.
 
 [Spotlight]: https://support.apple.com/en-us/HT204014
 [video]: https://github.com/monfresh/laptop/wiki/Detailed-installation-instructions-with-video
