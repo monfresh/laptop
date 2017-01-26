@@ -12,8 +12,6 @@ brew 'phantomjs'
 
 brew 'hub'
 
-tap 'caskroom/cask'
-tap 'caskroom/versions'
 cask 'flux'
 cask 'github-desktop'
 cask 'sublime-text'

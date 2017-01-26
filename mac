@@ -100,6 +100,10 @@ brew_is_installed() {
   brew list -1 | grep -Fqx "$1"
 }
 
+tap_is_installed() {
+  brew tap -1 | grep -Fqx "$1"
+}
+
 gem_install_or_update() {
   if gem list "$1" | grep "^$1 ("; then
     fancy_echo "Updating %s ..." "$1"
@@ -146,6 +150,9 @@ fi
 # See https://github.com/caskroom/homebrew-cask/releases/tag/v0.60.0
 if brew_is_installed 'brew-cask'; then
   brew uninstall --force 'brew-cask'
+fi
+
+if tap_is_installed 'caskroom/versions'; then
   brew untap caskroom/versions
 fi
 
