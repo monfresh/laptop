@@ -2,9 +2,10 @@
 
 fancy_echo "Running your customizations from ~/.laptop.local ..."
 
-brew bundle --file=- <<EOF
-cask 'atom'
-cask 'cloud'
-cask 'firefox'
-cask 'iterm2'
-EOF
+if [ -f "$HOME/Brewfile.local" ]; then
+  if brew bundle --file="$HOME/Brewfile.local"; then
+    fancy_echo "All items in Brewfile.local were installed successfully."
+  else
+    fancy_echo "Some items in Brewfile.local were not installed successfully."
+  fi
+fi

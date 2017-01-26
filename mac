@@ -224,11 +224,6 @@ bundle config --global jobs $((number_of_cores - 1))
 
 fancy_echo '...Finished Ruby installation checks.'
 
-if [ -f "$HOME/.laptop.local" ]; then
-  # shellcheck source=/dev/null
-  . "$HOME/.laptop.local"
-fi
-
 no_prompt_customizations_in_shell_file() {
   ! grep -qs -e "PS1=" -e "precmd" -e "PROMPT=" "$shell_file"
 }
@@ -274,6 +269,11 @@ if app_is_installed 'GitHub'; then
   fancy_echo "If not, you can do it by signing in to the GitHub app on your Mac."
 elif [ ! -f "$HOME/.ssh/github_rsa.pub" ]; then
   open ~/Applications/GitHub\ Desktop.app
+fi
+
+if [ -f "$HOME/.laptop.local" ]; then
+  # shellcheck source=/dev/null
+  . "$HOME/.laptop.local"
 fi
 
 fancy_echo 'All done!'

@@ -88,7 +88,7 @@ What it sets up
 * [Postgres] for storing relational data
 * [ruby-install] for installing different versions of Ruby
 * [Sublime Text 3] for coding all the things
-* [Zsh] as your shell
+* [Zsh] as your shell (if you opt in)
 
 [Bundler]: http://bundler.io/
 [chruby]: https://github.com/postmodern/chruby
@@ -109,7 +109,7 @@ What it sets up
 It should take less than 15 minutes to install (depends on your machine and
 internet connection).
 
-The script also lightly customizes your Zsh prompt so that it displays your
+The script also lightly customizes your shell prompt so that it displays your
 current directory in orange, followed by the current Ruby version or gemset in
 green, and sets the prompt character to `$`. It also allows you to easily
 distinguish directories from files when running `ls` by displaying directories
@@ -137,7 +137,7 @@ click on the Settings tab, scroll down to the Solarized Profile, click on it,
 then click the Default button. When you open a new window or tab (or if you quit and relaunch Terminal), it will use the Solarized theme.
 
 If you want to try out different prompt colors other than orange and green,
-open your `.zshrc` in Sublime Text:
+open your `.zshrc` or `.bash_profile` in Sublime Text:
 
 ```sh
 subl ~/.zshrc
@@ -148,43 +148,44 @@ any of the 256 possible [Xterm colors](http://upload.wikimedia.org/wikipedia/com
 Save the file, then open a new Terminal window or tab to see the changes.
 
 
-Customize in `~/.laptop.local` and `Brewfile`
----------------------------------------------
+Customize in `~/.laptop.local` and `~/Brewfile.local`
+-----------------------------------------------------
 ```sh
 # Go to your OS X user's root directory
 cd ~
 
-# Download the sample file to your computer
+# Download the sample files to your computer
 curl --remote-name https://raw.githubusercontent.com/monfresh/laptop/master/.laptop.local
+curl --remote-name https://raw.githubusercontent.com/monfresh/laptop/master/Brewfile.local
 
-# open the file in Sublime Text
+# open the files in Sublime Text
 subl .laptop.local
+subl Brewfile.local
 ```
 
 Your `~/.laptop.local` is run at the end of the `mac` script.
-Put your customizations there. You can use the `.laptop.local` you downloaded
-above to get started. It lets you install the following tools:
+Put your customizations there. If you want to install additional
+tools or Mac apps with Homebrew, add them to your `~/Brewfile.local`.
+You can use the `.laptop.local` and `Brewfile.local` you downloaded
+above to get started. It lets you install the following tools and Mac apps:
 
 * [Atom] - GitHub's open source text editor
 * [CloudApp] for sharing screenshots and making an animated GIF from a video
 * [Firefox] for testing your Rails app on a browser other than Chrome or Safari
 * [iTerm2] - an awesome replacement for the OS X Terminal
+* [Redis] for storing key-value data
 
 [Atom]: https://atom.io/
 [CloudApp]: http://getcloudapp.com/
 [Firefox]: https://www.mozilla.org/en-US/firefox/new/
 [iTerm2]: http://iterm2.com/
+[Redis]: http://redis.io/
 
 Write your customizations such that they can be run safely more than once.
 See the `mac` script for examples.
 
 Laptop functions such as `fancy_echo`, and `gem_install_or_update` can be used
 in your `~/.laptop.local`.
-
-Editing the `Brewfile`
-----------------------
-Most of what the script installs is listed in the `Brewfile`. If you don't want
-the script to install certain tools, you can remove them from the `Brewfile`.
 
 How to manage background services (such as Postgres)
 ----------------------------------------------------------
