@@ -149,8 +149,8 @@ if brew_is_installed 'brew-cask'; then
   brew untap caskroom/versions
 fi
 
-fancy_echo "Updating Homebrew formulas ..."
-brew update
+fancy_echo "Updating Homebrew ..."
+cd "$(brew --repo)" && git fetch && git reset --hard origin/master && brew update
 
 fancy_echo "Verifying the Homebrew installation..."
 if brew doctor; then
