@@ -39,7 +39,7 @@ and once it appears, press `return` to launch it.
 In your Terminal window, copy and paste the command below, then press `return`.
 
 ```sh
-curl -s https://raw.githubusercontent.com/monfresh/laptop/master/laptop | sh -
+bash <(curl -s https://raw.githubusercontent.com/monfresh/laptop/master/laptop)
 ```
 
 The [script](https://github.com/monfresh/laptop/blob/master/mac) itself is
