@@ -262,7 +262,7 @@ EOT
     # display pwd in orange, current ruby version in green,
     # and set prompt character to $
     # shellcheck disable=SC2016
-    append_to_file "$shell_file" 'precmd () { PS1="${ORANGE}[%~] ${GREEN}$(prompt_ruby_info) ${NORMAL}$ " }'
+    append_to_file "$shell_file" 'precmd () { PS1="${ORANGE}[%~] ${GREEN}$(prompt_ruby_info) ${NORMAL}$ " ; }'
     # display directories and files in different colors when running ls
     append_to_file "$shell_file" 'export CLICOLOR=1;'
     append_to_file "$shell_file" 'export LSCOLORS=exfxcxdxbxegedabagacad;'
