@@ -117,11 +117,11 @@ gem_install_or_update() {
 app_is_installed() {
   local app_name
   app_name=$(echo "$1" | cut -d'-' -f1)
-  find /Applications -iname "$app_name*" -maxdepth 1 | egrep '.*' > /dev/null
+  find /Applications -iname "$app_name*" -maxdepth 1 | grep -E '.*' > /dev/null
 }
 
 latest_installed_ruby() {
-  find "$HOME/.rubies" -maxdepth 1 -name 'ruby-*' | tail -n1 | egrep -o '\d+\.\d+\.\d+'
+  find "$HOME/.rubies" -maxdepth 1 -name 'ruby-*' | tail -n1 | grep -E -o '\d+\.\d+\.\d+'
 }
 
 switch_to_latest_ruby() {
