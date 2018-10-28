@@ -10,7 +10,7 @@ upgrades, or skips packages based on what is already installed on the machine.
 
 This particular version of the script is geared toward beginners who want to
 set up a Ruby on Rails environment on their Mac. More advanced users can
-easily [customize](#customize-in-laptoplocal) the script to install additional
+easily [customize](#customize-in-laptoplocal-and-brewfilelocal) the script to install additional
 tools. To see an example of a more advanced script, check out
 [18F/laptop](https://github.com/18F/laptop).
 
