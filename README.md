@@ -2,23 +2,24 @@ Laptop
 ======
 [![Build Status](https://travis-ci.org/monfresh/laptop.svg)](https://travis-ci.org/monfresh/laptop)
 
-Laptop is a script to set up an OS X computer for web development, and to keep
+Laptop is a script to set up a macOS computer for web development, and to keep
 it up to date.
 
 It can be run multiple times on the same machine safely. It installs,
 upgrades, or skips packages based on what is already installed on the machine.
 
 This particular version of the script is geared toward beginners who want to
-set up a Ruby on Rails environment on their Mac. More advanced users can
-easily [customize](#customize-in-laptoplocal-and-brewfilelocal) the script to install additional
-tools. To see an example of a more advanced script, check out
-[18F/laptop](https://github.com/18F/laptop).
+set up a Ruby environment on their Mac to be able to install gems such as Rails
+or Jekyll. More advanced users can easily [customize](#customize-in-laptoplocal-and-brewfilelocal)
+the script to install additional tools. To see an example of a more advanced
+script, check out [18F/laptop](https://github.com/18F/laptop).
 
 Requirements
 ------------
 
-I support clean installations of these operating systems:
+Supported operating systems:
 
+* macOS Mojave (10.14)
 * macOS High Sierra (10.13)
 * macOS Sierra (10.12)
 * OS X El Capitan (10.11)
@@ -32,7 +33,7 @@ Install
 -------
 
 Begin by opening the Terminal application on your Mac. The easiest way to open
-an application in OS X is to search for it via [Spotlight]. The default
+an application in macOS is to search for it via [Spotlight]. The default
 keyboard shortcut for invoking Spotlight is `command-Space`. Once Spotlight
 is up, just start typing the first few letters of the app you are looking for,
 and once it appears, press `return` to launch it.
@@ -47,7 +48,7 @@ The [script](https://github.com/monfresh/laptop/blob/master/mac) itself is
 available in this repo for you to review if you want to see what it does
 and how it works.
 
-Note that the script will ask you to enter your OS X password at various
+Note that the script will ask you to enter your macOS password at various
 points. This is the same password that you use to log in to your Mac.
 If you don't already have it installed, GitHub for Mac will launch
 automatically at the end of the script so you can set up everything you'll
@@ -77,7 +78,7 @@ What it sets up
 ---------------
 
 * [Bundler] for managing Ruby gems
-* [chruby] for managing [Ruby] versions
+* [chruby] for managing [Ruby] versions (recommended over RVM and rbenv)
 * [Flux] for adjusting your Mac's display color so you can sleep better
 * [GitHub Desktop] for setting up your SSH keys automatically
 * [Heroku Toolbelt] for deploying and managing Heroku apps
@@ -144,15 +145,20 @@ open your `.zshrc` or `.bash_profile` in Sublime Text:
 subl ~/.zshrc
 ```
 
-Then in the line that starts with `precmd`, replace `{166}` and `{65}` with
-any of the 256 possible [Xterm colors](http://upload.wikimedia.org/wikipedia/commons/9/95/Xterm_color_chart.png).
-Save the file, then open a new Terminal window or tab to see the changes.
+Define a new color variable using any of the 256 possible [Xterm colors](http://upload.wikimedia.org/wikipedia/commons/9/95/Xterm_color_chart.png). For example:
+
+```
+BLUE=$(tput setaf 190)
+```
+
+Then in the line that contains `PS1=`, replace `{ORANGE}` or `{GREEN}` with
+`{BLUE}`. Save the file, then open a new Terminal window or tab to see the changes.
 
 
 Customize in `~/.laptop.local` and `~/Brewfile.local`
 -----------------------------------------------------
 ```sh
-# Go to your OS X user's root directory
+# Go to your macOS user's root directory
 cd ~
 
 # Download the sample files to your computer
@@ -173,7 +179,7 @@ above to get started. It lets you install the following tools and Mac apps:
 * [Atom] - GitHub's open source text editor
 * [CloudApp] for sharing screenshots and making an animated GIF from a video
 * [Firefox] for testing your Rails app on a browser other than Chrome or Safari
-* [iTerm2] - an awesome replacement for the OS X Terminal
+* [iTerm2] - an awesome replacement for the macOS Terminal
 * [Redis] for storing key-value data
 
 [Atom]: https://atom.io/
