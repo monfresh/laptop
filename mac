@@ -101,7 +101,7 @@ brew_is_installed() {
 }
 
 tap_is_installed() {
-  brew tap -1 | grep -Fqx "$1"
+  brew tap | grep -Fqx "$1"
 }
 
 gem_install_or_update() {
