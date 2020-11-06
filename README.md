@@ -146,7 +146,6 @@ copy the entire contents of `laptop.log` into a
 - [Homebrew Services] so you can easily stop, start, and restart services
 - [Postgres] for storing relational data
 - [ruby-install] for installing different versions of Ruby
-- [Zsh] as your shell (if you opt in)
 
 [bundler]: http://bundler.io/
 [chruby]: https://github.com/postmodern/chruby
@@ -158,7 +157,6 @@ copy the entire contents of `laptop.log` into a
 [postgres]: http://www.postgresql.org/
 [ruby]: https://www.ruby-lang.org/en/
 [ruby-install]: https://github.com/postmodern/ruby-install
-[zsh]: http://www.zsh.org/
 
 It should take less than 15 minutes to install (depends on your machine and
 internet connection).
