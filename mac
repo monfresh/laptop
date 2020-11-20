@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Welcome to the monfresh laptop script!
-# Be prepared to turn your laptop (or desktop)
-# into an awesome development machine.
-
 fancy_echo() {
   local fmt="$1"; shift
 
@@ -109,6 +105,9 @@ if [[ ! $SHELL == *fish ]]; then
   # shellcheck disable=SC2016
   append_to_file "$shell_file" 'export PATH="$HOME/.bin:$PATH"'
 fi
+
+fancy_echo 'Welcome to the monfresh laptop script!'
+fancy_echo 'You should be and up and running with a working Ruby environment in a few minutes.'
 
 if ! command -v brew >/dev/null; then
   fancy_echo "Installing Homebrew ..."
@@ -227,3 +226,4 @@ if [ -f "$HOME/.laptop.local" ]; then
 fi
 
 fancy_echo 'All done!'
+fancy_echo 'For more coding guides and tools, subscribe to my newsletter: https://eepurl.com/1-dtn'

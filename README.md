@@ -13,6 +13,9 @@ set up a Ruby environment on their Mac to be able to install gems such as Rails
 or Jekyll. More advanced users can easily [customize](#customize-in-laptoplocal-and-brewfilelocal)
 the script to install additional tools.
 
+For more coding guides and tools, subscribe to my [newsletter](http://eepurl.com/1-dtn). It goes out once a week on Thursdays. I write about Ruby, Rails, Mac productivity and automation, static sites, and more on
+my [site](https://www.moncefbelyamani.com).
+
 ## Requirements
 
 Supported operating systems:
