@@ -89,6 +89,14 @@ This should point to the `.rubies` directory in your home folder. For example:
 /Users/monfresh/.rubies/ruby-2.7.2/bin/ruby
 ```
 
+## How to install gems such as Rails or Jekyll
+
+Once you run the script, and have verified that it worked, then you can safely install gems using the `gem install` command. For example:
+
+```shell
+gem install jekyll
+```
+
 ## How to switch between Ruby versions and install different versions
 
 By default, the script installs the latest version of Ruby. To install an older version,
