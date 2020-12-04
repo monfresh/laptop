@@ -97,6 +97,12 @@ Once you run the script, and have verified that it worked, then you can safely i
 gem install jekyll
 ```
 
+You should then be able to use the gems right away:
+
+```shell
+jekyll -v
+```
+
 ## How to switch between Ruby versions and install different versions
 
 By default, the script installs the latest version of Ruby. To install an older version,
