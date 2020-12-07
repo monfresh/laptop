@@ -20,6 +20,7 @@ my [site](https://www.moncefbelyamani.com).
 
 Supported operating systems:
 
+- I'll be testing BigSur soon. I don't expect anything to change.
 - macOS Catalina (10.15)
 - macOS Mojave (10.14)
 - macOS High Sierra (10.13)
@@ -53,14 +54,18 @@ available in this repo for you to review if you want to see what it does
 and how it works.
 
 Note that the script might ask you to enter your macOS password at various
-points. This is the same password that you use to log in to your Mac. If you
+points. This is the same password that you use to log in to your Mac. The
+prompt comes from Homebrew, because it needs permissions to write to the
+`/usr/local` directory.
+
+If you
 have `rbenv` or `RVM` installed, the script will ask you to uninstall them first
 and run the script again. Look at the script output for uninstallation
 instructions.
 
 **Once the script is done, quit and relaunch Terminal.**
 
-It is highly recommended to run the script regularly to keep your computer up
+I recommend running the script regularly to keep your computer up
 to date. Once the script has been installed, you'll be able to run it at your
 convenience by typing `laptop` and pressing `return` in your Terminal.
 
@@ -125,6 +130,9 @@ Another way to automatically switch between versions is to add a `.ruby-version`
 3. Verify that you are using 2.6.6 with `ruby -v`
 4. `cd` into your project
 5. Verify that you are using the specified version with `ruby -v`
+
+Note that gems only get installed in a specific version of Ruby. If you installed jekyll in 2.7.2,
+and then you install 2.6.6 for example, you'll have to install jekyll again in 2.6.6.
 
 ## Why chruby and not RVM or rbenv?
 
