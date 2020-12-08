@@ -108,6 +108,17 @@ fi
 
 fancy_echo 'Welcome to the monfresh laptop script!'
 fancy_echo 'You should be and up and running with a working Ruby environment in a few minutes.'
+fancy_echo 'The following lines are to help me debug any issues:'
+fancy_echo "Current shell: $SHELL."
+if command -v rbenv >/dev/null; then
+  fancy_echo "rbenv is installed"
+fi
+if command -v rvm >/dev/null; then
+  fancy_echo "rvm is installed"
+fi
+if command -v asdf >/dev/null; then
+  fancy_echo "asdf is installed"
+fi
 
 if ! command -v brew >/dev/null; then
   fancy_echo "Installing Homebrew ..."
