@@ -95,12 +95,6 @@ gem_install_or_update() {
   fi
 }
 
-app_is_installed() {
-  local app_name
-  app_name=$(echo "$1" | cut -d'-' -f1)
-  find /Applications -iname "$app_name*" -maxdepth 1 | grep -E '.app' > /dev/null
-}
-
 latest_installed_ruby() {
   find "$HOME/.rubies" -maxdepth 1 -name 'ruby-*' -print0 | sort -z | xargs -0 | grep -E -o '\d+\.\d+\.\d+' | tail -n1
 }
@@ -111,7 +105,9 @@ switch_to_latest_ruby() {
   chruby "ruby-$(latest_installed_ruby)"
 }
 
-append_to_file "$shell_file" "alias laptop='bash <(curl -s https://raw.githubusercontent.com/monfresh/laptop/master/laptop)'"
+if [[ ! $SHELL == *fish ]]; then
+  append_to_file "$shell_file" "alias laptop='bash <(curl -s https://raw.githubusercontent.com/monfresh/laptop/master/laptop)'"
+fi
 
 if [[ ! $SHELL == *fish ]]; then
   # shellcheck disable=SC2016
