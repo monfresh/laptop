@@ -44,6 +44,18 @@ create_fish_config_and_set_it_as_shell_file() {
   shell_file="$HOME/.config/fish/config.fish"
 }
 
+configure_shell_file_for_chruby() {
+  if [[ $SHELL == *fish ]]; then
+    append_to_file "$shell_file" 'source /usr/local/share/chruby/chruby.fish'
+    append_to_file "$shell_file" 'source /usr/local/share/chruby/auto.fish'
+  else
+    append_to_file "$shell_file" 'source /usr/local/share/chruby/chruby.sh'
+    append_to_file "$shell_file" 'source /usr/local/share/chruby/auto.sh'
+  fi
+
+  append_to_file "$shell_file" "chruby ruby-$(latest_installed_ruby)"
+}
+
 # shellcheck disable=SC2154
 trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
 
@@ -140,9 +152,6 @@ if tap_is_installed 'caskroom/versions'; then
   brew untap caskroom/versions
 fi
 
-fancy_echo "Updating Homebrew ..."
-cd "$(brew --repo)" && git fetch && git reset --hard origin/master && brew update
-
 fancy_echo "Verifying the Homebrew installation..."
 if brew doctor; then
   fancy_echo "Your Homebrew installation is good to go."
@@ -181,18 +190,8 @@ EOF
 EOF
     fi
 
-    if [[ $SHELL == *fish ]]; then
-      append_to_file "$shell_file" 'source /usr/local/share/chruby/chruby.fish'
-      append_to_file "$shell_file" 'source /usr/local/share/chruby/auto.fish'
-    else
-      append_to_file "$shell_file" 'source /usr/local/share/chruby/chruby.sh'
-      append_to_file "$shell_file" 'source /usr/local/share/chruby/auto.sh'
-    fi
-
+    configure_shell_file_for_chruby
     ruby-install ruby
-
-    append_to_file "$shell_file" "chruby ruby-$(latest_installed_ruby)"
-
     switch_to_latest_ruby
   else
     brew bundle --file=- <<EOF
@@ -204,6 +203,8 @@ EOF
       brew 'chruby-fish'
 EOF
     fi
+
+    configure_shell_file_for_chruby
 
     fancy_echo 'Checking if a newer version of Ruby is available...'
     switch_to_latest_ruby
