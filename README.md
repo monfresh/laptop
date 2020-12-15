@@ -18,9 +18,11 @@ my [site](https://www.moncefbelyamani.com).
 
 ## Requirements
 
+**Macs with the M1 chip are not currently supported**
+
 Supported operating systems:
 
-- I'll be testing BigSur soon. I don't expect anything to change.
+- I'll be testing BigSur soon (on Intel Macs)
 - macOS Catalina (10.15)
 - macOS Mojave (10.14)
 - macOS High Sierra (10.13)
