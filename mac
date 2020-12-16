@@ -127,6 +127,10 @@ fi
 if command -v asdf >/dev/null; then
   fancy_echo "asdf is installed"
 fi
+fancy_echo "macOS version:"
+sw_vers
+fancy_echo "Mac model:"
+sysctl hw.model
 
 if ! command -v brew >/dev/null; then
   fancy_echo "Installing Homebrew ..."
