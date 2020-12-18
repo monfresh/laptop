@@ -3,4 +3,5 @@
 os: osx
 osx_image: xcode12.2
 script:
+  - rvm implode
   - bash <(curl -s https://raw.githubusercontent.com/monfresh/laptop/master/laptop)
