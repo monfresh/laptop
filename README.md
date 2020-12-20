@@ -74,6 +74,13 @@ convenience by typing `laptop` and pressing `return` in your Terminal.
 
 [spotlight]: https://support.apple.com/en-us/HT204014
 
+## Debugging script failures
+
+Your last `laptop` run will be saved to a file called `laptop.log` in your home
+folder. Read through it to see if you can debug the issue yourself, with the help of the [Troubleshooting Errors](https://github.com/monfresh/laptop/wiki/Troubleshooting-Errors) Wiki article. If not,
+copy the entire contents of `laptop.log` into a
+[new GitHub Issue](https://github.com/monfresh/laptop/issues/new) (or attach the whole log file to the issue) for me and I'll be glad to help you. If the script doesn't work for you, it's most likely a bug in my script, which I'd love to fix, so please don't hesitate to report any issues.
+
 ## How to tell if the script worked
 
 If the last thing the script displayed was "All done!", then everything the script was meant to do worked.
@@ -155,13 +162,6 @@ Other folks who prefer `chruby`:
 - <https://kgrz.io/programmers-guide-to-choosing-ruby-version-manager.html>
 - <https://stevemarshall.com/journal/why-i-use-chruby/>
 - <https://linhmtran168.github.io/blog/2014/02/27/moving-from-rbenv-to-chruby/>
-
-## Debugging
-
-Your last Laptop run will be saved to a file called `laptop.log` in your home
-folder. Read through it to see if you can debug the issue yourself. If not,
-copy the entire contents of `laptop.log` into a
-[new GitHub Issue](https://github.com/monfresh/laptop/issues/new) (or attach the whole log file to the issue) for me and I'll be glad to help you. If the script doesn't work for you, it's most likely a bug in my script, which I'd love to fix, so please don't hesitate to report any issues.
 
 ## What it sets up
 
