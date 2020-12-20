@@ -224,6 +224,7 @@ EOF
 fi
 
 fancy_echo 'Updating Rubygems...'
+switch_to_latest_ruby
 gem update --system
 
 gem_install_or_update 'bundler'
