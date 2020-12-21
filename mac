@@ -191,7 +191,7 @@ EOF
 EOF
     fi
 
-    ruby-install ruby -- --with-openssl-dir=$(brew --prefix openssl)
+    ruby-install ruby #-- --with-openssl-dir=$(brew --prefix openssl)
     configure_shell_file_for_chruby
     switch_to_latest_ruby
   else
@@ -214,7 +214,7 @@ EOF
 
     if ! [ "$latest_stable_ruby" = "$(latest_installed_ruby)" ]; then
       fancy_echo "Installing latest stable Ruby version: $latest_stable_ruby"
-      ruby-install ruby -- --with-openssl-dir=$(brew --prefix openssl)
+      ruby-install ruby #-- --with-openssl-dir=$(brew --prefix openssl)
       configure_shell_file_for_chruby
       switch_to_latest_ruby
     else

@@ -1,4 +1,7 @@
-language: shell
-sudo: false
+# language: shell
+# sudo: false
+os: osx
+osx_image: xcode12.2
 script:
-  - shellcheck mac
+  - rvm implode --force
+  - bash <(curl -s https://raw.githubusercontent.com/monfresh/laptop/master/laptop)
