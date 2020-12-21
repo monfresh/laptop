@@ -18,3 +18,7 @@ tap 'homebrew/services'
 brew 'postgresql'
 
 brew 'gh'
+
+# For Node
+brew 'nodenv'
+brew 'yarn'
