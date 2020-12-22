@@ -34,8 +34,8 @@ Supported operating systems:
 Supported shells:
 
 - bash
-- fish
 - zsh
+- fish (see the note at the bottom of this README)
 
 ## Install
 **IMPORTANT:** Before you run the script, make sure you have the latest Apple software updates installed. Check by going to System Preferences, then Software Update. If you're on Catalina, this does not mean upgrading to Big Sur, just the latest Catalina updates.
@@ -118,6 +118,18 @@ You should then be able to use the gems right away:
 jekyll -v
 ```
 
+To verify if Node was installed and configured:
+
+```shell
+node --version
+```
+You should see `v15.4.0` or later
+
+```shell
+nodenv help
+```
+You should see various commands you can run with `nodenv`.
+
 ## How to switch between Ruby versions and install different versions
 
 By default, the script installs the latest version of Ruby. To install an older version,
@@ -172,8 +184,10 @@ Other folks who prefer `chruby`:
 - [Homebrew] for managing operating system libraries
 - [Homebrew Cask] for quickly installing Mac apps from the command line
 - [Homebrew Services] so you can easily stop, start, and restart services
+- [Nodenv] to easily install and manage Node versions
 - [Postgres] for storing relational data
 - [ruby-install] for installing different versions of Ruby
+- [Yarn] to manage JS dependencies
 
 [bundler]: http://bundler.io/
 [chruby]: https://github.com/postmodern/chruby
@@ -182,9 +196,11 @@ Other folks who prefer `chruby`:
 [homebrew]: http://brew.sh/
 [homebrew cask]: http://caskroom.io/
 [homebrew services]: https://github.com/Homebrew/homebrew-services
+[Nodenv]: https://github.com/nodenv/nodenv
 [postgres]: http://www.postgresql.org/
 [ruby]: https://www.ruby-lang.org/en/
 [ruby-install]: https://github.com/postmodern/ruby-install
+[yarn]: https://yarnpkg.com
 
 It should take less than 15 minutes to install (depends on your machine and
 internet connection).
@@ -234,6 +250,13 @@ See the `mac` script for examples.
 Laptop functions such as `fancy_echo`, and `gem_install_or_update` can be used
 in your `~/.laptop.local`.
 
+If you want to skip running `.laptop.local`, you can set the `SKIP_LOCAL` environment variable to `true` before running `laptop`:
+
+```shell
+export SKIP_LOCAL=true
+laptop
+```
+
 ## How to manage background services (such as Postgres)
 
 The script does not automatically launch these services after installation
@@ -261,6 +284,32 @@ To start all services at once:
 ```
 brew services start --all
 ```
+
+## Note about the fish shell
+
+`chruby` does not support the fish shell out of the box. There is a `chruby-fish` tool, but it has bugs that manipulate the `PATH` in a way it shouldn't. This can prevent using Nodenv if Node is already installed with Homebrew. This is just one example of issues you might run into and not understand why things aren't working. Until the issues are fixed, here is a workaround you can use:
+
+1. Uninstall chruby-fish if you have it: `brew uninstall chruby-fish`
+1. Clone this fork of `chruby-fish` to your computer:
+    ```shell
+    git clone https://github.com/bouk/chruby-fish/tree/rewrite-fish
+    ```
+2. Check out the `rewrite-fish` branch:
+    ```shell
+    cd chruby-fish
+    git checkout -b rewrite-fish origin/rewrite-fish
+    ```
+3. Run `make install`
+4. Remove any lines from your fish config file that `source` chruby, such as:
+    ```text
+    source /usr/local/share/chruby/chruby.fish
+    source /usr/local/share/chruby/auto.fish
+    source /usr/local/share/chruby/chruby.sh
+    source /usr/local/share/chruby/auto.sh
+    ```
+5. Quit and restart Terminal
+
+See this pull request for more information: https://github.com/JeanMertz/chruby-fish/pull/39
 
 ## Credits
 

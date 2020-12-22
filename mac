@@ -45,15 +45,20 @@ create_fish_config_and_set_it_as_shell_file() {
 }
 
 configure_shell_file_for_chruby() {
-  if [[ $SHELL == *fish ]]; then
-    append_to_file "$shell_file" 'source /usr/local/share/chruby/chruby.fish'
-    append_to_file "$shell_file" 'source /usr/local/share/chruby/auto.fish'
-  else
+  if [[ ! $SHELL == *fish ]]; then
     append_to_file "$shell_file" 'source /usr/local/share/chruby/chruby.sh'
     append_to_file "$shell_file" 'source /usr/local/share/chruby/auto.sh'
   fi
 
   append_to_file "$shell_file" "chruby ruby-$(latest_installed_ruby)"
+}
+
+configure_shell_file_for_nodenv() {
+  if [[ $SHELL == *fish ]]; then
+    append_to_file "$shell_file" 'status --is-interactive; and source (nodenv init -|psub)'
+  else
+    append_to_file "$shell_file" 'eval "$(nodenv init -)"'
+  fi
 }
 
 # shellcheck disable=SC2154
@@ -185,11 +190,6 @@ else
     brew 'chruby'
     brew 'ruby-install'
 EOF
-    if [[ $SHELL == *fish ]]; then
-      brew bundle --file=- <<EOF
-      brew 'chruby-fish'
-EOF
-    fi
 
     ruby-install ruby -- --with-openssl-dir=$(brew --prefix openssl)
     configure_shell_file_for_chruby
@@ -199,11 +199,6 @@ EOF
     brew 'chruby'
     brew 'ruby-install'
 EOF
-    if [[ $SHELL == *fish ]]; then
-      brew bundle --file=- <<EOF
-      brew 'chruby-fish'
-EOF
-    fi
 
     configure_shell_file_for_chruby
 
@@ -235,7 +230,10 @@ bundle config --global jobs $((number_of_cores - 1))
 
 fancy_echo '...Finished Ruby installation checks.'
 
-if [ -f "$HOME/.laptop.local" ]; then
+fancy_echo 'Configuring Nodenv...'
+configure_shell_file_for_nodenv
+
+if [ -f "$HOME/.laptop.local" ] && ! [ $SKIP_LOCAL = true ]; then
   # shellcheck source=/dev/null
   . "$HOME/.laptop.local"
 fi
