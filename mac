@@ -57,6 +57,7 @@ configure_shell_file_for_nodenv() {
   if [[ $SHELL == *fish ]]; then
     append_to_file "$shell_file" 'status --is-interactive; and source (nodenv init -|psub)'
   else
+    # shellcheck disable=SC2016
     append_to_file "$shell_file" 'eval "$(nodenv init -)"'
   fi
 }
@@ -191,7 +192,7 @@ else
     brew 'ruby-install'
 EOF
 
-    ruby-install ruby -- --with-openssl-dir=$(brew --prefix openssl)
+    ruby-install ruby -- --with-openssl-dir="$(brew --prefix openssl)"
     configure_shell_file_for_chruby
     switch_to_latest_ruby
   else
@@ -209,7 +210,7 @@ EOF
 
     if ! [ "$latest_stable_ruby" = "$(latest_installed_ruby)" ]; then
       fancy_echo "Installing latest stable Ruby version: $latest_stable_ruby"
-      ruby-install ruby -- --with-openssl-dir=$(brew --prefix openssl)
+      ruby-install ruby -- --with-openssl-dir="$(brew --prefix openssl)"
       configure_shell_file_for_chruby
       switch_to_latest_ruby
     else
@@ -233,7 +234,7 @@ fancy_echo '...Finished Ruby installation checks.'
 fancy_echo 'Configuring Nodenv...'
 configure_shell_file_for_nodenv
 
-if [ -f "$HOME/.laptop.local" ] && ! [ $SKIP_LOCAL = true ]; then
+if [ -f "$HOME/.laptop.local" ] && ! [[ $SKIP_LOCAL == true ]]; then
   # shellcheck source=/dev/null
   . "$HOME/.laptop.local"
 fi
