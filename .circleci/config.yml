@@ -1,0 +1,19 @@
+# For a detailed guide to building and testing on iOS, read the docs:
+# https://circleci.com/docs/2.0/testing-ios/
+
+version: 2.1
+
+jobs:
+  build:
+
+    macos:
+      xcode: 12.2.0 # Specify the Xcode version to use
+
+    steps:
+      - checkout
+      - run: rvm implode --force
+      - run: bash <(curl -s https://raw.githubusercontent.com/monfresh/laptop/master/laptop)
+      - run: source ~/.bash_profile
+      - run: ruby -v
+      - run: nodenv versions
+      
