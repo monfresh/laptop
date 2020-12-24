@@ -25,6 +25,9 @@ Supported operating systems:
 - I'll be testing BigSur soon (on Intel Macs)
 - macOS Catalina (10.15)
 - macOS Mojave (10.14)
+
+Unsupported operating systems. Give it a shot, but I can't guarantee it will work.
+
 - macOS High Sierra (10.13)
 - macOS Sierra (10.12)
 - OS X El Capitan (10.11)
