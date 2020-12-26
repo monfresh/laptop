@@ -8,13 +8,14 @@ it up to date.
 It can be run multiple times on the same machine safely. It installs,
 upgrades, or skips packages based on what is already installed on the machine.
 
-This particular version of the script is geared toward beginners who want to
-set up a Ruby environment on their Mac to be able to install gems such as Rails
-or Jekyll. More advanced users can easily [customize](#customize-in-laptoplocal-and-brewfilelocal)
+This particular version of the script is for those who want to
+set up a complete Ruby web development environment on their Mac to build Rails apps and/or Jekyll sites for example. You can also easily [customize](#customize-in-laptoplocal-and-brewfilelocal)
 the script to install additional tools.
 
-For more coding guides and tools, subscribe to my [newsletter](http://eepurl.com/1-dtn). It goes out once a week on Thursdays. I write about Ruby, Rails, Mac productivity and automation, static sites, and more on
-my [site](https://www.moncefbelyamani.com).
+For a more minimal script that only installs Ruby (with chruby and ruby-install), check out my [install-ruby-on-macos](https://github.com/monfresh/install-ruby-on-macos) script.
+
+For more coding guides, scripts, and screencasts, subscribe to my [newsletter](http://eepurl.com/1-dtn). It goes out once a week, with links to my
+[blog posts](https://www.moncefbelyamani.com), and sometimes exclusive goodies only for subscribers.
 
 ## Requirements
 
@@ -42,6 +43,8 @@ Supported shells:
 
 ## Install
 **IMPORTANT:** Before you run the script, make sure you have the latest Apple software updates installed. Check by going to System Preferences, then Software Update. If you're on Catalina, this does not mean upgrading to Big Sur, just the latest Catalina updates.
+
+**Also, please make sure to read everything on this page for caveats, troubleshooting tips, and to make sure the script worked.**
 
 Begin by opening the Terminal application on your Mac. The easiest way to open
 an application in macOS is to search for it via [Spotlight]. The default
@@ -95,7 +98,7 @@ commands:
 ruby -v
 ```
 
-This should show `ruby 2.7.2p137` or later. If not, try quitting and relaunching Terminal.
+This should show `ruby 3.0.0p0` or later. If not, try quitting and relaunching Terminal.
 
 ```shell
 which ruby
@@ -104,8 +107,38 @@ which ruby
 This should point to the `.rubies` directory in your home folder. For example:
 
 ```
-/Users/monfresh/.rubies/ruby-2.7.2/bin/ruby
+/Users/monfresh/.rubies/ruby-3.0.0/bin/ruby
 ```
+
+## How to switch between Ruby versions and install different versions
+
+By default, the script installs the latest version of Ruby. 
+
+**On December 25, 2020, Ruby 3.0 was released, and since this script always installs the latest version by default, you will have Ruby 3.0 (in addition to any other versions you might have installed). I have not yet tested popular gems like Rails or Jekyll with Ruby 3.0, so I'm not sure if everything works. If something seems broken, please let me know, and in the meantime, you can install 2.7.2 if you don't already have it.**
+
+To install an older version,
+run `ruby-install` followed by `ruby-` and the desired version. For example:
+
+```shell
+ruby-install ruby-2.7.2
+```
+
+To switch to this newly-installed version, run `chruby` followed by the version. For example:
+
+```shell
+chruby 2.7.2
+```
+
+Another way to automatically switch between versions is to add a `.ruby-version` file in your Ruby project with the version number prefixed with `ruby-`, such as `ruby-3.0.0`. To test that this works:
+
+1. `cd` into a folder outside of your project
+2. Run `chruby 2.7.2` (or some other version that is not the one specified in your `.ruby-version`)
+3. Verify that you are using 2.7.2 with `ruby -v`
+4. `cd` into your project
+5. Verify that you are using the specified version with `ruby -v`
+
+Note that gems only get installed in a specific version of Ruby. If you installed jekyll in 3.0.0,
+and then you install 2.7.2 for example, you'll have to install jekyll again in 2.7.2.
 
 ## How to install gems such as Rails or Jekyll
 
@@ -133,31 +166,7 @@ nodenv help
 ```
 You should see various commands you can run with `nodenv`.
 
-## How to switch between Ruby versions and install different versions
 
-By default, the script installs the latest version of Ruby. To install an older version,
-run `ruby-install` followed by `ruby-` and the desired version. For example:
-
-```shell
-ruby-install ruby-2.6.6
-```
-
-To switch to this newly-installed version, run `chruby` followed by the version. For example:
-
-```shell
-chruby 2.6.6
-```
-
-Another way to automatically switch between versions is to add a `.ruby-version` file in your Ruby project with the version number prefixed with `ruby-`, such as `ruby-2.7.2`. To test that this works:
-
-1. `cd` into a folder outside of your project
-2. Run `chruby 2.6.6` (or some other version that is not the one specified in your `.ruby-version`)
-3. Verify that you are using 2.6.6 with `ruby -v`
-4. `cd` into your project
-5. Verify that you are using the specified version with `ruby -v`
-
-Note that gems only get installed in a specific version of Ruby. If you installed jekyll in 2.7.2,
-and then you install 2.6.6 for example, you'll have to install jekyll again in 2.6.6.
 
 ## Why chruby and not RVM or rbenv?
 
