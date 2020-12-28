@@ -23,7 +23,7 @@ For more coding guides, scripts, and screencasts, subscribe to my [newsletter](h
 
 Supported operating systems:
 
-- I'll be testing BigSur soon (on Intel Macs)
+- Big Sur (11.1)
 - macOS Catalina (10.15)
 - macOS Mojave (10.14)
 
