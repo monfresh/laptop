@@ -19,7 +19,7 @@ For more coding guides, scripts, and screencasts, subscribe to my [newsletter](h
 
 ## Requirements
 
-**Macs with the M1 chip are not currently supported**
+**I have not yet tested Macs with the M1 chip. The script should work under Rosetta 2. If you give it a try, please let me know if it worked.**
 
 Supported operating systems:
 
