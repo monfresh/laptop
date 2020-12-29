@@ -166,7 +166,9 @@ nodenv help
 ```
 You should see various commands you can run with `nodenv`.
 
+## Next steps
 
+The next thing you'll want to do after running the script is to [configure Git with your name, email, and preferred editor](https://www.moncefbelyamani.com/first-things-to-configure-before-using-git/).
 
 ## Why chruby and not RVM or rbenv?
 
