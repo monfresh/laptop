@@ -14,8 +14,7 @@ the script to install additional tools.
 
 For a more minimal script that only installs Ruby (with chruby and ruby-install), check out my [install-ruby-on-macos](https://github.com/monfresh/install-ruby-on-macos) script.
 
-For more coding guides, scripts, and screencasts, subscribe to my [newsletter](http://eepurl.com/1-dtn). It goes out once a week, with links to my
-[blog posts](https://www.moncefbelyamani.com), and sometimes exclusive goodies only for subscribers.
+For more coding guides, scripts, and screencasts, subscribe to my [free weekly newsletter](https://www.moncefbelyamani.com/newsletter).
 
 ## Requirements
 

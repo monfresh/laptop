@@ -240,4 +240,5 @@ if [ -f "$HOME/.laptop.local" ] && ! [[ $SKIP_LOCAL == true ]]; then
 fi
 
 fancy_echo 'All done!'
-fancy_echo 'For more coding guides and tools, subscribe to my newsletter: https://eepurl.com/1-dtn'
+fancy_echo 'For more coding guides and tools, subscribe to my newsletter:'
+fancy_echo 'https://www.moncefbelyamani.com/newsletter'
