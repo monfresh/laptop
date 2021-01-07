@@ -90,14 +90,23 @@ copy the entire contents of `laptop.log` into a
 
 If the last thing the script displayed was "All done!", then everything the script was meant to do worked.
 
-To verify that the Ruby environment is properly configured, run one or more of these
-commands:
+To verify that the Ruby environment is properly configured, quit and restart Terminal, then run these commands:
 
 ```shell
 ruby -v
 ```
 
-This should show `ruby 2.7.2`. If not, try quitting and relaunching Terminal.
+This should show `ruby 2.7.2`. If not, try quitting and relaunching Terminal, then switch manually to 2.7.2:
+
+```shell
+chruby 2.7.2
+```
+
+and check the version to double check:
+
+```shell
+ruby -v
+```
 
 ```shell
 which ruby
@@ -108,6 +117,69 @@ This should point to the `.rubies` directory in your home folder. For example:
 ```
 /Users/monfresh/.rubies/ruby-2.7.2/bin/ruby
 ```
+
+## How to create a new Rails app
+
+Once you've verified that you are on Ruby 2.7.2 using the steps above in the previous section, you can create a new Rails app by following these steps:
+
+2. Run `gem install bundler rails`
+3. Quit and restart Terminal
+4. Create a folder to test with: 
+
+```shell
+mkdir ~/testing-rails
+```
+
+5. Go into that folder: 
+```shell
+cd ~/testing-rails
+```
+
+6. Run `chruby 2.7.2`
+7. Run `rails new .`
+This can take a few minutes, but the new Rails app should be created successfully.
+8. Run `rails s`.
+The server should be running and you should be able to visit the app in your browser at http://localhost:3000
+
+Once your Rails app is created, make sure to read [this section](#how-to-switch-between-ruby-versions-and-install-different-versions) for creating a `.ruby-version` file in your Rails app so that you're always using the correct Ruby version.
+
+## How to create a new Jekyll site
+
+1. Make sure you are on Ruby 2.7.2:
+```shell
+chruby 2.7.2
+```
+
+2. Install the bundler and jekyll gems:
+```shell
+gem install bundler jekyll
+```
+
+3. Check the Jekyll version. It should be 4.2.0 or later.
+
+```shell
+jekyll -v
+```
+
+4. Create a folder to test with: 
+
+```shell
+mkdir ~/testing-jekyll
+```
+
+5. Go into that folder: 
+```shell
+cd ~/testing-jekyll
+```
+
+6. Run `chruby 2.7.2`
+
+7. Create a new Jekyll site:
+```shell
+jekyll new .
+```
+
+Read my guide for [creating a new Jekyll site and publishing it on GitHub Pages](https://www.moncefbelyamani.com/making-github-pages-work-with-latest-jekyll/) for more details.
 
 ## How to switch between Ruby versions and install different versions
 
@@ -152,6 +224,18 @@ and then you install 2.7.2 later, you'll have to install jekyll again in 2.7.2.
 ## How to install gems such as Rails or Jekyll
 
 Once you run the script, and have verified that it worked, then you can safely install gems using the `gem install` command. For example:
+
+
+1. Run `ruby -v` to make sure you're on Ruby 2.7.2. If not, run `chruby 2.7.2`, then check again with `ruby -v`
+2. Run `gem install bundler rails`
+3. Quit and restart Terminal
+4. Create a folder to test with, such as `mkdir ~/testing-rails`
+5. Go into that folder: `cd ~/testing-rails`
+6. Run `chruby 2.7.2`
+7. Run `rails new .`
+This can take a few minutes, but the new Rails app should be created successfully.
+8. Run `rails s`.
+The server should be running and you should be able to visit the app in your browser at http://localhost:3000
 
 ```shell
 gem install jekyll
