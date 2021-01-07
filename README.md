@@ -221,31 +221,7 @@ Another highly-recommended way to automatically switch between versions is to ad
 Note that gems only get installed in a specific version of Ruby at a time. If you installed jekyll in 3.0.0,
 and then you install 2.7.2 later, you'll have to install jekyll again in 2.7.2.
 
-## How to install gems such as Rails or Jekyll
-
-Once you run the script, and have verified that it worked, then you can safely install gems using the `gem install` command. For example:
-
-
-1. Run `ruby -v` to make sure you're on Ruby 2.7.2. If not, run `chruby 2.7.2`, then check again with `ruby -v`
-2. Run `gem install bundler rails`
-3. Quit and restart Terminal
-4. Create a folder to test with, such as `mkdir ~/testing-rails`
-5. Go into that folder: `cd ~/testing-rails`
-6. Run `chruby 2.7.2`
-7. Run `rails new .`
-This can take a few minutes, but the new Rails app should be created successfully.
-8. Run `rails s`.
-The server should be running and you should be able to visit the app in your browser at http://localhost:3000
-
-```shell
-gem install jekyll
-```
-
-You should then be able to use the gems right away:
-
-```shell
-jekyll -v
-```
+## Check the Node installation
 
 To verify if Node was installed and configured:
 
