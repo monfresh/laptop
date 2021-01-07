@@ -97,7 +97,7 @@ commands:
 ruby -v
 ```
 
-This should show `ruby 3.0.0p0` or later. If not, try quitting and relaunching Terminal.
+This should show `ruby 2.7.2`. If not, try quitting and relaunching Terminal.
 
 ```shell
 which ruby
@@ -106,17 +106,21 @@ which ruby
 This should point to the `.rubies` directory in your home folder. For example:
 
 ```
-/Users/monfresh/.rubies/ruby-3.0.0/bin/ruby
+/Users/monfresh/.rubies/ruby-2.7.2/bin/ruby
 ```
 
 ## How to switch between Ruby versions and install different versions
 
 By default, the script installs the latest version of Ruby. 
 
-**On December 25, 2020, Ruby 3.0 was released, and since this script always installs the latest version by default, you will have Ruby 3.0 (in addition to any other versions you might have installed). I have not yet tested popular gems like Rails or Jekyll with Ruby 3.0, so I'm not sure if everything works. If something seems broken, please let me know, and in the meantime, you can install 2.7.2 if you don't already have it.**
+**On December 25, 2020, Ruby 3.0 was released, and since this script always installs the latest version by default, you will have Ruby 3.0 (in addition to any other versions you might have installed). Ruby 3.0 is still very new, so it's not yet fully compatible with gems like Rails or Jekyll. Because of this, the script also installs Ruby 2.7.2, which does work with most gems.**
 
-To install an older version,
-run `ruby-install` followed by `ruby-` and the desired version. For example:
+To check if you have Ruby 2.7.2 installed, run this command:
+
+```shell
+find "$HOME/.rubies" -maxdepth 1 -name 'ruby-2.7.2'
+```
+If nothing is returned, then you should install it:
 
 ```shell
 ruby-install ruby-2.7.2
@@ -127,17 +131,24 @@ To switch to this newly-installed version, run `chruby` followed by the version.
 ```shell
 chruby 2.7.2
 ```
+You should run `chruby 2.7.2` before you start any new project to make sure you are using the correct version of Ruby.
 
-Another way to automatically switch between versions is to add a `.ruby-version` file in your Ruby project with the version number prefixed with `ruby-`, such as `ruby-3.0.0`. To test that this works:
+Another highly-recommended way to automatically switch between versions is to add a `.ruby-version` file in your Ruby project with the version number prefixed with `ruby-`, such as `ruby-2.7.2`. To test that this works:
 
-1. `cd` into a folder outside of your project
-2. Run `chruby 2.7.2` (or some other version that is not the one specified in your `.ruby-version`)
-3. Verify that you are using 2.7.2 with `ruby -v`
+1. `cd` into your Ruby project, such as your Rails app or Jekyll site
+2. At the root (top level) of your folder, create a file called `.ruby-version`:
+    ```shell
+    touch .ruby-version
+    ```
+3. Open the `.ruby-version` file and copy and paste `ruby-2.7.2` into it and save it.
+1. `cd` into a folder outside of your project, such as your home folder: `cd ~`
+2. Run `chruby 3.0.0` (or some other version that is not the one specified in your `.ruby-version`)
+3. Verify that you are using 3.0.0 with `ruby -v`
 4. `cd` into your project
-5. Verify that you are using the specified version with `ruby -v`
+5. Verify that `ruby -v` shows `2.7.2`
 
-Note that gems only get installed in a specific version of Ruby. If you installed jekyll in 3.0.0,
-and then you install 2.7.2 for example, you'll have to install jekyll again in 2.7.2.
+Note that gems only get installed in a specific version of Ruby at a time. If you installed jekyll in 3.0.0,
+and then you install 2.7.2 later, you'll have to install jekyll again in 2.7.2.
 
 ## How to install gems such as Rails or Jekyll
 
@@ -158,7 +169,7 @@ To verify if Node was installed and configured:
 ```shell
 node --version
 ```
-You should see `v15.4.0` or later
+You should see `v14.15.3` or later
 
 ```shell
 nodenv help

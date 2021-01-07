@@ -53,6 +53,15 @@ configure_shell_file_for_chruby() {
   append_to_file "$shell_file" "chruby ruby-$(latest_installed_ruby)"
 }
 
+configure_shell_file_for_ruby_2_7_2() {
+  if [[ ! $SHELL == *fish ]]; then
+    append_to_file "$shell_file" 'source /usr/local/share/chruby/chruby.sh'
+    append_to_file "$shell_file" 'source /usr/local/share/chruby/auto.sh'
+  fi
+
+  append_to_file "$shell_file" "chruby ruby-2.7.2"
+}
+
 configure_shell_file_for_nodenv() {
   if [[ $SHELL == *fish ]]; then
     append_to_file "$shell_file" 'status --is-interactive; and source (nodenv init -|psub)'
@@ -105,10 +114,20 @@ latest_installed_ruby() {
   find "$HOME/.rubies" -maxdepth 1 -name 'ruby-*' -print0 | sort -z | xargs -0 | grep -E -o '\d+\.\d+\.\d+' | tail -n1
 }
 
+ruby_2_7_2_is_installed() {
+  find "$HOME/.rubies" -maxdepth 1 -name 'ruby-2.7.2'
+}
+
 switch_to_latest_ruby() {
   # shellcheck disable=SC1091
   . /usr/local/share/chruby/chruby.sh
   chruby "ruby-$(latest_installed_ruby)"
+}
+
+switch_to_ruby_2_7_2() {
+  # shellcheck disable=SC1091
+  . /usr/local/share/chruby/chruby.sh
+  chruby ruby-2.7.2
 }
 
 
@@ -185,23 +204,21 @@ if command -v rbenv >/dev/null || command -v rvm >/dev/null; then
   echo "To uninstall RVM, run 'rvm implode'. To uninstall rbenv, follow the instructions here: https://github.com/rbenv/rbenv#uninstalling-rbenv"
 else
   if ! brew_is_installed "chruby"; then
-    fancy_echo 'Installing chruby, ruby-install, and the latest Ruby...'
+    fancy_echo 'Installing chruby, ruby-install, and Ruby 2.7.2 ...'
 
     brew bundle --file=- <<EOF
     brew 'chruby'
     brew 'ruby-install'
 EOF
 
-    ruby-install ruby -- --with-openssl-dir="$(brew --prefix openssl)"
-    configure_shell_file_for_chruby
-    switch_to_latest_ruby
+    ruby-install ruby-2.7.2 -- --with-openssl-dir="$(brew --prefix openssl)"
+    configure_shell_file_for_ruby_2_7_2
+    switch_to_ruby_2_7_2
   else
     brew bundle --file=- <<EOF
     brew 'chruby'
     brew 'ruby-install'
 EOF
-
-    configure_shell_file_for_chruby
 
     fancy_echo 'Checking if a newer version of Ruby is available...'
 
@@ -216,11 +233,20 @@ EOF
     else
       fancy_echo 'You have the latest version of Ruby'
     fi
+
+    if ! [ "$(ruby_2_7_2_is_installed)" = "$HOME/.rubies/ruby-2.7.2" ]; then
+      fancy_echo "Installing Ruby 2.7.2 ..."
+      ruby-install ruby-2.7.2 -- --with-openssl-dir="$(brew --prefix openssl)"
+      configure_shell_file_for_ruby_2_7_2
+      switch_to_ruby_2_7_2
+    fi
+
+    configure_shell_file_for_ruby_2_7_2
   fi
 fi
 
 fancy_echo 'Updating Rubygems...'
-switch_to_latest_ruby
+switch_to_ruby_2_7_2
 gem update --system
 
 gem_install_or_update 'bundler'
@@ -231,6 +257,8 @@ bundle config --global jobs $((number_of_cores - 1))
 
 fancy_echo '...Finished Ruby installation checks.'
 
+fancy_echo 'Installing latest stable release of Node.js ...'
+nodenv install 14.15.3
 fancy_echo 'Configuring Nodenv...'
 configure_shell_file_for_nodenv
 
