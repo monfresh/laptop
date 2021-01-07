@@ -141,7 +141,7 @@ This can take a few minutes, but the new Rails app should be created successfull
 8. Run `rails s`.
 The server should be running and you should be able to visit the app in your browser at http://localhost:3000
 
-Once your Rails app is created, make sure to read [this section](#how-to-switch-between-ruby-versions-and-install-different-versions) for creating a `.ruby-version` file in your Rails app so that you're always using the correct Ruby version.
+Once your Rails app is created, double check that it contains a `.ruby-version` file with `ruby-2.7.2` in it. If not, make sure to read [this section](#how-to-switch-between-ruby-versions-and-install-different-versions) for creating a `.ruby-version` file in your Rails app so that you're always using the correct Ruby version.
 
 ## How to create a new Jekyll site
 
@@ -208,6 +208,7 @@ You should run `chruby 2.7.2` before you start any new project to make sure you 
 Another highly-recommended way to automatically switch between versions is to add a `.ruby-version` file in your Ruby project with the version number prefixed with `ruby-`, such as `ruby-2.7.2`. To test that this works:
 
 1. `cd` into your Ruby project, such as your Rails app or Jekyll site
+2. First, check to see if the file already exists: `cat .ruby-version`. If not, then create it in the next step.
 2. Create a file called `.ruby-version` with `ruby-2.7.2` in it:
     ```shell
     echo 'ruby-2.7.2' >> .ruby-version
