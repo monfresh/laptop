@@ -208,11 +208,10 @@ You should run `chruby 2.7.2` before you start any new project to make sure you 
 Another highly-recommended way to automatically switch between versions is to add a `.ruby-version` file in your Ruby project with the version number prefixed with `ruby-`, such as `ruby-2.7.2`. To test that this works:
 
 1. `cd` into your Ruby project, such as your Rails app or Jekyll site
-2. At the root (top level) of your folder, create a file called `.ruby-version`:
+2. Create a file called `.ruby-version` with `ruby-2.7.2` in it:
     ```shell
-    touch .ruby-version
+    echo 'ruby-2.7.2' >> .ruby-version
     ```
-3. Open the `.ruby-version` file and copy and paste `ruby-2.7.2` into it and save it.
 1. `cd` into a folder outside of your project, such as your home folder: `cd ~`
 2. Run `ruby -v`. It will probably say `2.6.3p62`, which is the Ruby that came preinstalled on your Mac.
 4. `cd` into your project
