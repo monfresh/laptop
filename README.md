@@ -111,9 +111,9 @@ This should point to the `.rubies` directory in your home folder. For example:
 
 ## How to switch between Ruby versions and install different versions
 
-By default, the script installs the latest version of Ruby. 
+The first time you run the script (assuming you didn't already have `chruby` installed), it will install Ruby 2.7.2, which is the version that is compatible with most gems at the moment. If you run the script again, it will check for newer versions, and it will install Ruby 3.0.0, which was released on December 25, 2020. You will still have Ruby 2.7.2. That's the advantage of using version managers like `chruby`. You can have many different version installed at the same time and you can switch between them.
 
-**On December 25, 2020, Ruby 3.0 was released, and since this script always installs the latest version by default, you will have Ruby 3.0 (in addition to any other versions you might have installed). Ruby 3.0 is still very new, so it's not yet fully compatible with gems like Rails or Jekyll. Because of this, the script also installs Ruby 2.7.2, which does work with most gems.**
+**Ruby 3.0 is still very new, so it's not yet fully compatible with gems like Rails or Jekyll. So, before you create a new Rails app or Jekyll site, make sure you're using Ruby 2.7.2. Keep reading for instructions.**
 
 To check if you have Ruby 2.7.2 installed, run this command:
 
@@ -142,10 +142,9 @@ Another highly-recommended way to automatically switch between versions is to ad
     ```
 3. Open the `.ruby-version` file and copy and paste `ruby-2.7.2` into it and save it.
 1. `cd` into a folder outside of your project, such as your home folder: `cd ~`
-2. Run `chruby 3.0.0` (or some other version that is not the one specified in your `.ruby-version`)
-3. Verify that you are using 3.0.0 with `ruby -v`
+2. Run `ruby -v`. It will probably say `2.6.3p62`, which is the Ruby that came preinstalled on your Mac.
 4. `cd` into your project
-5. Verify that `ruby -v` shows `2.7.2`
+5. Verify that `ruby -v` shows `2.7.2p137`
 
 Note that gems only get installed in a specific version of Ruby at a time. If you installed jekyll in 3.0.0,
 and then you install 2.7.2 later, you'll have to install jekyll again in 2.7.2.
