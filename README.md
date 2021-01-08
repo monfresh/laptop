@@ -122,61 +122,36 @@ This should point to the `.rubies` directory in your home folder. For example:
 
 Once you've verified that you are on Ruby 2.7.2 using the steps above in the previous section, you can create a new Rails app by following these steps:
 
-2. Run `gem install bundler rails`
-3. Quit and restart Terminal
-4. Create a folder to test with: 
+1. Create a folder to test with and navigate to it: 
 
 ```shell
-mkdir ~/testing-rails
+mkdir ~/testing-rails && cd ~/testing-rails
 ```
-
-5. Go into that folder: 
-```shell
-cd ~/testing-rails
-```
-
-6. Run `chruby 2.7.2`
-7. Run `rails new .`
+2. Run `chruby 2.7.2`
+3. Run `rails new .`
 This can take a few minutes, but the new Rails app should be created successfully.
-8. Run `rails s`.
+4. Run `rails s`.
 The server should be running and you should be able to visit the app in your browser at http://localhost:3000
 
 Once your Rails app is created, double check that it contains a `.ruby-version` file with `ruby-2.7.2` in it. If not, make sure to read [this section](#how-to-switch-between-ruby-versions-and-install-different-versions) for creating a `.ruby-version` file in your Rails app so that you're always using the correct Ruby version.
 
 ## How to create a new Jekyll site
 
-1. Make sure you are on Ruby 2.7.2:
-```shell
-chruby 2.7.2
-```
-
-2. Install the bundler and jekyll gems:
-```shell
-gem install bundler jekyll
-```
-
-3. Check the Jekyll version. It should be 4.2.0 or later.
+1. Create a folder to test with and navigate to it: 
 
 ```shell
-jekyll -v
+mkdir ~/testing-jekyll && cd ~/testing-jekyll
 ```
 
-4. Create a folder to test with: 
+2. Run `chruby 2.7.2`
 
-```shell
-mkdir ~/testing-jekyll
-```
-
-5. Go into that folder: 
-```shell
-cd ~/testing-jekyll
-```
-
-6. Run `chruby 2.7.2`
-
-7. Create a new Jekyll site:
+3. Create a new Jekyll site:
 ```shell
 jekyll new .
+```
+4. Run the server:
+```shell
+bundle exec jekyll serve
 ```
 
 Read my guide for [creating a new Jekyll site and publishing it on GitHub Pages](https://www.moncefbelyamani.com/making-github-pages-work-with-latest-jekyll/) for more details.
@@ -267,7 +242,9 @@ Other folks who prefer `chruby`:
 - [Homebrew] for managing operating system libraries
 - [Homebrew Cask] for quickly installing Mac apps from the command line
 - [Homebrew Services] so you can easily stop, start, and restart services
+- [Jekyll] for creating static sites
 - [Nodenv] to easily install and manage Node versions
+- [Rails] for creating modern web apps
 - [Postgres] for storing relational data
 - [ruby-install] for installing different versions of Ruby
 - [Yarn] to manage JS dependencies
@@ -279,8 +256,10 @@ Other folks who prefer `chruby`:
 [homebrew]: http://brew.sh/
 [homebrew cask]: http://caskroom.io/
 [homebrew services]: https://github.com/Homebrew/homebrew-services
+[jekyll]: https://jekyllrb.com
 [Nodenv]: https://github.com/nodenv/nodenv
 [postgres]: http://www.postgresql.org/
+[rails]: https://rubyonrails.org
 [ruby]: https://www.ruby-lang.org/en/
 [ruby-install]: https://github.com/postmodern/ruby-install
 [yarn]: https://yarnpkg.com
