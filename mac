@@ -44,22 +44,28 @@ create_fish_config_and_set_it_as_shell_file() {
   shell_file="$HOME/.config/fish/config.fish"
 }
 
-configure_shell_file_for_chruby() {
-  if [[ ! $SHELL == *fish ]]; then
-    append_to_file "$shell_file" 'source /usr/local/share/chruby/chruby.sh'
-    append_to_file "$shell_file" 'source /usr/local/share/chruby/auto.sh'
-  fi
-
-  append_to_file "$shell_file" "chruby ruby-$(latest_installed_ruby)"
+apple_m1() {
+  sysctl -n machdep.cpu.brand_string | grep "Apple M1"
 }
 
-configure_shell_file_for_ruby_2_7_2() {
+check_processor_and_set_chruby_source_strings() {
+  if apple_m1; then
+    chruby_source_string="source /opt/homebrew/opt/chruby/share/chruby/chruby.sh"
+    auto_source_string="source /opt/homebrew/opt/chruby/share/chruby/auto.sh"
+  else
+    chruby_source_string="source /usr/local/share/chruby/chruby.sh"
+    auto_source_string="source /usr/local/share/chruby/auto.sh"
+  fi
+}
+
+configure_shell_file_for_chruby() {
   if [[ ! $SHELL == *fish ]]; then
-    append_to_file "$shell_file" 'source /usr/local/share/chruby/chruby.sh'
-    append_to_file "$shell_file" 'source /usr/local/share/chruby/auto.sh'
+    append_to_file "$shell_file" "$chruby_source_string"
+    append_to_file "$shell_file" "$auto_source_string"
   fi
 
-  append_to_file "$shell_file" "chruby ruby-2.7.2"
+  local ruby_version="$1"
+  append_to_file "$shell_file" "chruby ruby-$ruby_version"
 }
 
 configure_shell_file_for_nodenv() {
@@ -198,6 +204,8 @@ fi
 # shellcheck disable=SC2016
 append_to_file "$HOME/.gemrc" 'gem: --no-document'
 
+check_processor_and_set_chruby_source_strings
+
 if command -v rbenv >/dev/null || command -v rvm >/dev/null; then
   fancy_echo 'We recommend chruby and ruby-install over RVM or rbenv.'
   echo "Please uninstall RVM or rbenv, and remove any related lines from $shell_file, then run this script again."
@@ -212,7 +220,7 @@ else
 EOF
 
     ruby-install ruby-2.7.2 -- --with-openssl-dir="$(brew --prefix openssl)"
-    configure_shell_file_for_ruby_2_7_2
+    configure_shell_file_for_chruby "2.7.2"
     switch_to_ruby_2_7_2
   else
     brew bundle --file=- <<EOF
@@ -228,7 +236,7 @@ EOF
     if ! [ "$latest_stable_ruby" = "$(latest_installed_ruby)" ]; then
       fancy_echo "Installing latest stable Ruby version: $latest_stable_ruby"
       ruby-install ruby -- --with-openssl-dir="$(brew --prefix openssl)"
-      configure_shell_file_for_chruby
+      configure_shell_file_for_chruby "$(latest_installed_ruby)"
       switch_to_latest_ruby
     else
       fancy_echo 'You have the latest version of Ruby'
@@ -237,11 +245,11 @@ EOF
     if ! [ "$(ruby_2_7_2_is_installed)" = "$HOME/.rubies/ruby-2.7.2" ]; then
       fancy_echo "Installing Ruby 2.7.2 ..."
       ruby-install ruby-2.7.2 -- --with-openssl-dir="$(brew --prefix openssl)"
-      configure_shell_file_for_ruby_2_7_2
+      configure_shell_file_for_chruby "2.7.2"
       switch_to_ruby_2_7_2
     fi
 
-    configure_shell_file_for_ruby_2_7_2
+    configure_shell_file_for_chruby "2.7.2"
   fi
 fi
 
