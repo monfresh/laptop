@@ -18,7 +18,7 @@ For more coding guides, scripts, and screencasts, subscribe to my [free weekly n
 
 ## Requirements
 
-**I have not yet tested Macs with the M1 chip. The script should work under Rosetta 2. If you give it a try, please let me know if it worked.**
+**I have not yet tested the script on Macs with the M1 chip. As soon as I'm able to, I will update the script. See the [troubleshooting](https://github.com/monfresh/laptop/wiki/Troubleshooting-Errors) section if you run into any errors.**
 
 Supported operating systems:
 
