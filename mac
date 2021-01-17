@@ -124,16 +124,16 @@ ruby_2_7_2_is_installed() {
   find "$HOME/.rubies" -maxdepth 1 -name 'ruby-2.7.2'
 }
 
-switch_to_latest_ruby() {
+switch_to_ruby() {
   # shellcheck disable=SC1091
-  . /usr/local/share/chruby/chruby.sh
-  chruby "ruby-$(latest_installed_ruby)"
-}
+  if apple_m1; then
+    source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+  else
+    source /usr/local/share/chruby/chruby.sh
+  fi
 
-switch_to_ruby_2_7_2() {
-  # shellcheck disable=SC1091
-  . /usr/local/share/chruby/chruby.sh
-  chruby ruby-2.7.2
+  local ruby_version="$1"
+  chruby "ruby-$ruby_version"
 }
 
 
@@ -221,7 +221,7 @@ EOF
 
     ruby-install ruby-2.7.2 -- --with-openssl-dir="$(brew --prefix openssl)"
     configure_shell_file_for_chruby "2.7.2"
-    switch_to_ruby_2_7_2
+    switch_to_ruby "2.7.2"
   else
     brew bundle --file=- <<EOF
     brew 'chruby'
@@ -237,7 +237,7 @@ EOF
       fancy_echo "Installing latest stable Ruby version: $latest_stable_ruby"
       ruby-install ruby -- --with-openssl-dir="$(brew --prefix openssl)"
       configure_shell_file_for_chruby "$(latest_installed_ruby)"
-      switch_to_latest_ruby
+      switch_to_ruby "$(latest_installed_ruby)"
     else
       fancy_echo 'You have the latest version of Ruby'
     fi
@@ -246,7 +246,7 @@ EOF
       fancy_echo "Installing Ruby 2.7.2 ..."
       ruby-install ruby-2.7.2 -- --with-openssl-dir="$(brew --prefix openssl)"
       configure_shell_file_for_chruby "2.7.2"
-      switch_to_ruby_2_7_2
+      switch_to_ruby "2.7.2"
     fi
 
     configure_shell_file_for_chruby "2.7.2"
@@ -254,7 +254,7 @@ EOF
 fi
 
 fancy_echo 'Updating Rubygems...'
-switch_to_ruby_2_7_2
+switch_to_ruby "2.7.2"
 gem update --system
 
 fancy_echo 'Installing or updating Bundler'
