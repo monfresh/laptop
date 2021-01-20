@@ -48,8 +48,12 @@ apple_m1() {
   sysctl -n machdep.cpu.brand_string | grep "Apple M1"
 }
 
+rosetta() {
+  uname -m | grep "x86_64"
+}
+
 check_processor_and_set_chruby_source_strings() {
-  if apple_m1; then
+  if apple_m1 && ! rosetta; then
     chruby_source_string="source /opt/homebrew/opt/chruby/share/chruby/chruby.sh"
     auto_source_string="source /opt/homebrew/opt/chruby/share/chruby/auto.sh"
   else
@@ -126,7 +130,7 @@ ruby_2_7_2_is_installed() {
 
 switch_to_ruby() {
   # shellcheck disable=SC1091
-  if apple_m1; then
+  if apple_m1 && ! rosetta; then
     source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
   else
     source /usr/local/share/chruby/chruby.sh
@@ -163,6 +167,10 @@ fancy_echo "macOS version:"
 sw_vers
 fancy_echo "Mac model:"
 sysctl hw.model
+fancy_echo "Mac CPU:"
+sysctl -n machdep.cpu.brand_string
+fancy_echo "CPU architecture:"
+uname -m
 
 if ! command -v brew >/dev/null; then
   fancy_echo "Installing Homebrew ..."
