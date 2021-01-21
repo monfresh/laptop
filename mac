@@ -171,6 +171,9 @@ fancy_echo "Mac CPU:"
 sysctl -n machdep.cpu.brand_string
 fancy_echo "CPU architecture:"
 uname -m
+fancy_echo "shell file contents:"
+cat $shell_file
+fancy_echo "End of debugging"
 
 if ! command -v brew >/dev/null; then
   fancy_echo "Installing Homebrew ..."
