@@ -148,7 +148,7 @@ Read my guide for [creating a new Jekyll site and publishing it on GitHub Pages]
 
 ## How to switch between Ruby versions and install different versions
 
-The first time you run the script (assuming you didn't already have `chruby` installed), it will install Ruby 2.7.2, which is the version that is compatible with most gems at the moment. If you run the script again, it will check for newer versions, and it will install Ruby 3.0.0, which was released on December 25, 2020. You will still have Ruby 2.7.2. That's the advantage of using version managers like `chruby`. You can have many different version installed at the same time and you can switch between them.
+The first time you run the script (assuming you didn't already have `chruby` installed), it will install Ruby 2.7.2, which is the version that is compatible with most gems at the moment. If you run the script again, it will check for newer versions, and it will install Ruby 3.0.0, which was released on December 25, 2020. You will still have Ruby 2.7.2. That's the advantage of using version managers like `chruby`. You can have many different versions installed at the same time and you can switch between them.
 
 **Ruby 3.0 is still very new, so it's not yet fully compatible with gems like Rails or Jekyll. So, before you create a new Rails app or Jekyll site, make sure you're using Ruby 2.7.2. Keep reading for instructions.**
 
