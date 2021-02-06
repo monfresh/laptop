@@ -155,8 +155,8 @@ fancy_echo 'You should be and up and running with a working Ruby environment in 
 fancy_echo 'The following lines are to help me debug any issues:'
 fancy_echo "Current shell: $SHELL"
 fancy_echo "Current PATH: $PATH"
-fancy_echo "xcode-select path:"
-xcode-select -p
+# fancy_echo "xcode-select path:"
+# xcode-select -p
 fancy_echo "Ruby installed with Homebrew?"
 if brew_is_installed "ruby"; then
   echo "yes"
