@@ -157,12 +157,7 @@ fancy_echo "Current shell: $SHELL"
 fancy_echo "Current PATH: $PATH"
 # fancy_echo "xcode-select path:"
 # xcode-select -p
-fancy_echo "Ruby installed with Homebrew?"
-if brew_is_installed "ruby"; then
-  echo "yes"
-else
-  echo "no"
-fi
+
 if command -v rbenv >/dev/null; then
   fancy_echo "rbenv is installed"
 fi
@@ -202,6 +197,13 @@ if ! command -v brew >/dev/null; then
 else
   fancy_echo "Homebrew already installed. Updating Homebrew ..."
   brew update
+fi
+
+fancy_echo "Ruby installed with Homebrew?"
+if brew_is_installed "ruby"; then
+  echo "yes"
+else
+  echo "no"
 fi
 
 # Remove brew-cask since it is now installed as part of brew tap caskroom/cask.
