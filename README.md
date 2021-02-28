@@ -18,7 +18,11 @@ For more coding guides, scripts, and screencasts, subscribe to my [free weekly n
 
 ## Requirements
 
-**I have not yet personally tested the script on Macs with the M1 chip, but others have said it worked for them both natively and with Rosetta. Let me know if you run into any issues.**
+Supported chips:
+
+- Apple Silicon M1 (native)
+- Apple Silicon M1 (with Rosetta)
+- Intel
 
 Supported operating systems:
 
@@ -41,7 +45,7 @@ Supported shells:
 - fish (see the note at the bottom of this README)
 
 ## Install
-**IMPORTANT:** Before you run the script, make sure you have the latest Apple software updates installed. Check by going to System Preferences, then Software Update. If you're on Catalina, this does not mean upgrading to Big Sur, just the latest Catalina updates.
+**IMPORTANT:** Before you run the script, make sure you have the latest Apple software updates installed. Check by going to System Preferences, then Software Update. If you're on Catalina, you don't have to upgrade to Big Sur, just make sure you have the latest Catalina updates.
 
 **Also, please make sure to read everything on this page for caveats, troubleshooting tips, and to make sure the script worked.**
 
