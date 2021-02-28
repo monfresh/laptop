@@ -62,6 +62,18 @@ check_processor_and_set_chruby_source_strings() {
   fi
 }
 
+configure_shell_file_for_homebrew_on_m1() {
+  if [[ $SHELL == *fish ]]; then
+    # shellcheck disable=SC2016
+    append_to_file "$shell_file" 'status --is-interactive; and eval (/opt/homebrew/bin/brew shellenv)'
+    fish -c 'eval (/opt/homebrew/bin/brew shellenv)'
+  else
+    # shellcheck disable=SC2016
+    append_to_file "$HOME/.zprofile" 'eval $(/opt/homebrew/bin/brew shellenv)'
+    eval $(/opt/homebrew/bin/brew shellenv)
+  fi
+}
+
 configure_shell_file_for_chruby() {
   if [[ ! $SHELL == *fish ]]; then
     append_to_file "$shell_file" "$chruby_source_string"
@@ -193,9 +205,7 @@ if ! command -v brew >/dev/null; then
      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
     if apple_m1 && ! rosetta; then
-      # shellcheck disable=SC2016
-      append_to_file "$HOME/.zprofile" 'eval $(/opt/homebrew/bin/brew shellenv)'
-      eval $(/opt/homebrew/bin/brew shellenv)
+      configure_shell_file_for_homebrew_on_m1
     else
       # shellcheck disable=SC2016
       append_to_file "$shell_file" 'export PATH="/usr/local/bin:$PATH"'
