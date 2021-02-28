@@ -192,8 +192,14 @@ if ! command -v brew >/dev/null; then
   fancy_echo "Installing Homebrew ..."
      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-    # shellcheck disable=SC2016
-    append_to_file "$shell_file" 'export PATH="/usr/local/bin:$PATH"'
+    if apple_m1 && ! rosetta; then
+      # shellcheck disable=SC2016
+      append_to_file "$HOME/.zprofile" 'eval $(/opt/homebrew/bin/brew shellenv)'
+      eval $(/opt/homebrew/bin/brew shellenv)
+    else
+      # shellcheck disable=SC2016
+      append_to_file "$shell_file" 'export PATH="/usr/local/bin:$PATH"'
+    fi
 else
   fancy_echo "Homebrew already installed. Updating Homebrew ..."
   brew update
@@ -304,11 +310,11 @@ bundle config --global jobs $((number_of_cores - 1))
 
 fancy_echo '...Finished Ruby installation checks.'
 
-fancy_echo "Installing node 14.15.3 ..."
-if nodenv versions | grep 14.15.3; then
-  fancy_echo "node 14.15.3 already installed."
+fancy_echo "Installing node 14.16.0 ..."
+if nodenv versions | grep 14.16.0; then
+  fancy_echo "node 14.16.0 already installed."
 else
-  arch -x86_64 nodenv install 14.15.4
+  nodenv install 14.16.0
 fi
 fancy_echo 'Configuring Nodenv...'
 configure_shell_file_for_nodenv
@@ -319,5 +325,7 @@ if [ -f "$HOME/.laptop.local" ] && ! [[ $SKIP_LOCAL == true ]]; then
 fi
 
 fancy_echo 'All done!'
-fancy_echo 'For more coding guides and tools, subscribe to my newsletter:'
-fancy_echo 'https://www.moncefbelyamani.com/newsletter'
+fancy_echo 'If you found this script valuable, join the 1000+ people on my list'
+echo "who are becoming confident coders:"
+fancy_echo "https://www.moncefbelyamani.com/newsletter"
+echo " "
