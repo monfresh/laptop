@@ -2,19 +2,18 @@
 
 [![Build Status](https://travis-ci.org/monfresh/laptop.svg)](https://travis-ci.org/monfresh/laptop)
 
-Laptop is a script to set up a macOS computer for web development, and to keep
-it up to date.
+Laptop is a script that will set up a complete Ruby web development environment on your Mac. It also automatically installs the Jekyll and Rails gems.
 
 It can be run multiple times on the same machine safely. It installs,
 upgrades, or skips packages based on what is already installed on the machine.
 
-This particular version of the script is for those who want to
-set up a complete Ruby web development environment on their Mac to build Rails apps and/or Jekyll sites for example. You can also easily [customize](#customize-in-laptoplocal-and-brewfilelocal)
+You can also easily [customize](#customize-in-laptoplocal-and-brewfilelocal)
 the script to install additional tools.
 
-For a more minimal script that only installs Ruby (with chruby and ruby-install), check out my [install-ruby-on-macos](https://github.com/monfresh/install-ruby-on-macos) script.
+## More goodies
 
-For more coding guides, scripts, and screencasts, subscribe to my [free weekly newsletter](https://www.moncefbelyamani.com/newsletter).
+- Join the 1000+ people on my list who are becoming confident coders through my [free weekly coding guides](https://www.moncefbelyamani.com/newsletter) and exclusive tutorials and courses.
+- For a more minimal script that only installs Ruby (with chruby and ruby-install), check out my [install-ruby-on-macos](https://github.com/monfresh/install-ruby-on-macos) script.
 
 ## Requirements
 
