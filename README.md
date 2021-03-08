@@ -125,29 +125,11 @@ This should point to the `.rubies` directory in your home folder. For example:
 
 ## How to create a new Rails app
 
-Once you've installed the script successfully and restarted your terminal, creating a new Rails app takes just 3 more steps:
-https://www.moncefbelyamani.com/how-to-install-rails-and-create-a-new-rails-app-on-a-mac-the-easy-way/
+Once you've installed the script successfully and restarted your terminal, [creating a new Rails app](https://www.moncefbelyamani.com/how-to-install-rails-and-create-a-new-rails-app-on-a-mac-the-easy-way/) takes just 3 more steps.
 
 ## How to create a new Jekyll site
 
-1. Create a folder to test with and navigate to it: 
-
-```shell
-mkdir ~/testing-jekyll && cd ~/testing-jekyll
-```
-
-2. Run `chruby 2.7.2`
-
-3. Create a new Jekyll site:
-```shell
-jekyll new .
-```
-4. Run the server:
-```shell
-bundle exec jekyll serve
-```
-
-Read my guide for [creating a new Jekyll site and publishing it on GitHub Pages](https://www.moncefbelyamani.com/making-github-pages-work-with-latest-jekyll/) for more details.
+Similarly to Rails, [creating a new Jekyll site](https://www.moncefbelyamani.com/how-to-install-jekyll-on-a-mac-the-easy-way/#create-a-new-jekyll-site) is just as easy.
 
 ## How to switch between Ruby versions and install different versions
 
