@@ -337,6 +337,7 @@ if [ -f "$HOME/.laptop.local" ] && ! [[ $SKIP_LOCAL == true ]]; then
 fi
 
 fancy_echo 'All done!'
+fancy_echo 'Now make sure to quit and restart your terminal!'
 fancy_echo 'If you found this script valuable, join the 1000+ people on my list'
 echo "who are becoming confident coders:"
 fancy_echo "https://www.moncefbelyamani.com/newsletter"

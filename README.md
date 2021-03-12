@@ -67,7 +67,7 @@ and how it works.
 Note that the script might ask you to enter your macOS password at various
 points. This is the same password that you use to log in to your Mac. The
 prompt comes from Homebrew, because it needs permissions to write to the
-`/usr/local` directory.
+`/usr/local` (or `/opt/homebrew` on M1 Macs) directory.
 
 If you
 have `rbenv` or `RVM` installed, the script will ask you to uninstall them first
