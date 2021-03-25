@@ -25,9 +25,9 @@ Supported chips:
 
 Supported operating systems:
 
-- Big Sur (11.1)
-- macOS Catalina (10.15)
-- macOS Mojave (10.14)
+- Big Sur
+- macOS Catalina
+- macOS Mojave
 
 Unsupported operating systems. Give it a shot, but I can't guarantee it will work.
 
