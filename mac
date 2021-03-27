@@ -310,8 +310,8 @@ gem update --system
 fancy_echo 'Installing or updating Bundler'
 gem_install_or_update 'bundler'
 
-fancy_echo 'Installing Rails'
-gem install rails
+# fancy_echo 'Installing Rails'
+# gem install rails
 
 fancy_echo 'Installing Jekyll'
 gem install jekyll
