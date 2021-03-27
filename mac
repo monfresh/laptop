@@ -310,15 +310,15 @@ gem update --system
 fancy_echo 'Installing or updating Bundler'
 gem_install_or_update 'bundler'
 
+fancy_echo "Configuring Bundler ..."
+number_of_cores=$(sysctl -n hw.ncpu)
+bundle config --global jobs $((number_of_cores - 1))
+
 # fancy_echo 'Installing Rails'
 # gem install rails
 
 fancy_echo 'Installing Jekyll'
 gem install jekyll
-
-fancy_echo "Configuring Bundler ..."
-number_of_cores=$(sysctl -n hw.ncpu)
-bundle config --global jobs $((number_of_cores - 1))
 
 fancy_echo '...Finished Ruby installation checks.'
 
