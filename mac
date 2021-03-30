@@ -16,6 +16,15 @@ append_to_file() {
   fi
 }
 
+append_to_beginning_of_file() {
+  local file="$1"
+  local text="$2"
+
+  if ! grep -qs "^$text$" "$file"; then
+    echo "$text" | cat - "$file" > temp && mv temp "$file"
+  fi
+}
+
 create_zshrc_and_set_it_as_shell_file() {
   if [ ! -f "$HOME/.zshrc" ]; then
     touch "$HOME/.zshrc"
@@ -62,16 +71,24 @@ check_processor_and_set_chruby_source_strings() {
   fi
 }
 
+configure_shell_file_for_homebrew() {
+  if apple_m1 && ! rosetta; then
+    configure_shell_file_for_homebrew_on_m1
+  else
+    # shellcheck disable=SC2016
+    append_to_file "$shell_file" 'export PATH="/usr/local/bin:$PATH"'
+  fi
+}
+
 configure_shell_file_for_homebrew_on_m1() {
   if [[ $SHELL == *fish ]]; then
     # shellcheck disable=SC2016
-    append_to_file "$shell_file" 'status --is-interactive; and eval (/opt/homebrew/bin/brew shellenv)'
-    fish -c 'eval (/opt/homebrew/bin/brew shellenv)'
+    append_to_beginning_of_file "$shell_file" 'status --is-interactive; and eval (/opt/homebrew/bin/brew shellenv)'
   else
     # shellcheck disable=SC2016
     append_to_file "$HOME/.zprofile" 'eval $(/opt/homebrew/bin/brew shellenv)'
-    eval $(/opt/homebrew/bin/brew shellenv)
   fi
+  eval $(/opt/homebrew/bin/brew shellenv)
 }
 
 configure_shell_file_for_chruby() {
@@ -196,6 +213,12 @@ fancy_echo "shell file contents:"
 cat $shell_file
 fancy_echo "End of shell file contents."
 
+if [ -f "$HOME/.zprofile" ]; then
+  fancy_echo ".zprofile contents:"
+  cat "$HOME/.zprofile"
+  fancy_echo "End of .zprofile contents."
+fi
+
 fancy_echo "gem env:"
 gem env
 fancy_echo "End of gem env."
@@ -206,14 +229,10 @@ if ! command -v brew >/dev/null; then
   fancy_echo "Installing Homebrew ..."
      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-    if apple_m1 && ! rosetta; then
-      configure_shell_file_for_homebrew_on_m1
-    else
-      # shellcheck disable=SC2016
-      append_to_file "$shell_file" 'export PATH="/usr/local/bin:$PATH"'
-    fi
+    configure_shell_file_for_homebrew
 else
   fancy_echo "Homebrew already installed. Updating Homebrew ..."
+  configure_shell_file_for_homebrew
   brew update
 fi
 
