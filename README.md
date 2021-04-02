@@ -12,15 +12,14 @@ the script to install additional tools.
 
 ## More goodies
 
-- Join the 1000+ people on my list who are becoming confident coders through my [free weekly coding guides](https://www.moncefbelyamani.com/newsletter) and exclusive tutorials and courses.
+- Join the 1100+ people on my list who are becoming confident coders through my [free weekly coding guides](https://www.moncefbelyamani.com/newsletter) and exclusive tutorials and courses.
 - For a more minimal script that only installs Ruby (with chruby and ruby-install), check out my [install-ruby-on-macos](https://github.com/monfresh/install-ruby-on-macos) script.
 
 ## Requirements
 
 Supported chips:
 
-- Apple Silicon M1 (native)
-- Apple Silicon M1 (with Rosetta)
+- Apple Silicon M1
 - Intel
 
 Supported operating systems:
@@ -44,10 +43,39 @@ Supported shells:
 - fish (see the note at the bottom of this README)
 
 ## Install
-**IMPORTANT:** Before you run the script, make sure you have the latest Apple software updates installed. Check by going to System Preferences, then Software Update. If you're on Catalina, you don't have to upgrade to Big Sur, just make sure you have the latest Catalina updates.
+**IMPORTANT! CHECK THESE THINGS FIRST BEFORE RUNNING THE SCRIPT!** 
 
-**Also, please make sure to read everything on this page for caveats, troubleshooting tips, and to make sure the script worked.**
+### Your macOS software is up to date
+Before you run the script, make sure you have the latest Apple software updates installed. Check by going to System Preferences, then Software Update. If you're on Catalina, you don't have to upgrade to Big Sur, just make sure you have the latest Catalina updates.
 
+### Your Homebrew installation is clean
+If you already had Homebrew and/or the command line tools (or Xcode) installed,
+you'll need to make sure Homebrew is in a clean state before running my script. Running `brew doctor` should return `Your system is ready to brew.`. If not, try to fix as many of the problems as you can. Homebrew usually has great instructions for fixing problems.
+
+The Homebrew issue that is the most likely to cause problems is [outdated command line tools](https://github.com/monfresh/laptop/wiki/Troubleshooting-Errors/_edit#missing-or-outdated-command-line-tools), which is documented in the troubleshooting Wiki in this repo. It will say something like this when you run `brew doctor`:
+
+```
+Warning: A newer Command Line Tools release is available.
+Update them from Software Update in System Preferences or run:
+  softwareupdate --all --install --force
+
+If that doesn't show you any updates, run:
+  sudo rm -rf /Library/Developer/CommandLineTools
+  sudo xcode-select --install
+
+Alternatively, manually download them from:
+  https://developer.apple.com/download/more/.
+```
+
+To fix this, you'll need to [remove and reinstall the CLT](https://github.com/monfresh/laptop/wiki/Troubleshooting-Errors#how-to-remove-and-reinstall-the-command-line-tools).
+
+### If you are on an M1 Mac, do not use Rosetta
+Homebrew works natively on M1 Macs. Make sure to open the default Terminal application, or iTerm, or whatever app you use. Make sure it is not in Rosetta mode.
+
+### Quit and relaunch Terminal after running my script
+I mention this several times in this README, as well as when the script finishes successfully, but I'll say it again. For the changes to take effect, you have to "refresh" your terminal. The best way is to quit and relaunch it.
+
+### Now on to the installation
 Begin by opening the Terminal application on your Mac. The easiest way to open
 an application in macOS is to search for it via [Spotlight]. The default
 keyboard shortcut for invoking Spotlight is `command-Space`. Once Spotlight
