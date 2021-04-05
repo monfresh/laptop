@@ -43,10 +43,29 @@ Supported shells:
 - fish (see the note at the bottom of this README)
 
 ## Install
-**IMPORTANT! CHECK THESE THINGS FIRST BEFORE RUNNING THE SCRIPT!** 
+**IMPORTANT! CHECK ALL OF THE ITEMS BELOW BEFORE RUNNING THE SCRIPT!** 
 
 ### Your macOS software is up to date
 Before you run the script, make sure you have the latest Apple software updates installed. Check by going to System Preferences, then Software Update. If you're on Catalina, you don't have to upgrade to Big Sur, just make sure you have the latest Catalina updates.
+
+### If applicable, you have uninstalled RVM and/or rbenv
+My script is not compatible with RVM and rbenv. You need to uninstall them first.
+
+#### Uninstall RVM
+```
+rvm implode
+```
+Then delete any lines related to RVM from these files if they exist:
+- `~/.bash_profile`
+- `~/.zshrc`
+- `~/.zprofile`
+
+#### Uninstall rbenv
+Follow the instructions here: https://github.com/rbenv/rbenv#uninstalling-rbenv
+Then delete any lines related to rbenv from these files if they exist:
+- `~/.bash_profile`
+- `~/.zshrc`
+- `~/.zprofile`
 
 ### Your Homebrew installation is clean
 If you already had Homebrew and/or the command line tools (or Xcode) installed,
