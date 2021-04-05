@@ -12,7 +12,7 @@ the script to install additional tools.
 
 ## More goodies
 
-- Join the 1100+ people on my list who are becoming confident coders through my [free weekly coding guides](https://www.moncefbelyamani.com/newsletter) and exclusive tutorials and courses.
+- Join the 1200+ people on my list who are becoming confident coders through my [weekly coding guides](https://www.moncefbelyamani.com/newsletter) and exclusive tutorials and courses.
 - For a more minimal script that only installs Ruby (with chruby and ruby-install), check out my [install-ruby-on-macos](https://github.com/monfresh/install-ruby-on-macos) script.
 
 ## Requirements
@@ -51,6 +51,8 @@ Before you run the script, make sure you have the latest Apple software updates 
 ### Your Homebrew installation is clean
 If you already had Homebrew and/or the command line tools (or Xcode) installed,
 you'll need to make sure Homebrew is in a clean state before running my script. Running `brew doctor` should return `Your system is ready to brew.`. If not, try to fix as many of the problems as you can. Homebrew usually has great instructions for fixing problems.
+
+**If you can't solve the Homebrew problems on your own, I can help you if you run my script anyways, then [open an issue](https://github.com/monfresh/laptop/issues/new) and attach the `laptop.log` file that gets saved in your Home folder.**
 
 The Homebrew issue that is the most likely to cause problems is [outdated command line tools](https://github.com/monfresh/laptop/wiki/Troubleshooting-Errors/_edit#missing-or-outdated-command-line-tools), which is documented in the troubleshooting Wiki in this repo. It will say something like this when you run `brew doctor`:
 
