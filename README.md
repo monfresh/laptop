@@ -118,11 +118,6 @@ points. This is the same password that you use to log in to your Mac. The
 prompt comes from Homebrew, because it needs permissions to write to the
 `/usr/local` (or `/opt/homebrew` on M1 Macs) directory.
 
-If you
-have `rbenv` or `RVM` installed, the script will ask you to uninstall them first
-and run the script again. Look at the script output for uninstallation
-instructions.
-
 **Once the script is done, quit and relaunch Terminal.**
 
 I recommend running the script regularly to keep your computer up
@@ -136,13 +131,13 @@ convenience by typing `laptop` and pressing `return` in your Terminal.
 Your last `laptop` run will be saved to a file called `laptop.log` in your home
 folder. Read through it to see if you can debug the issue yourself, with the help of the [Troubleshooting Errors](https://github.com/monfresh/laptop/wiki/Troubleshooting-Errors) Wiki article. If not,
 copy the entire contents of `laptop.log` into a
-[new GitHub Issue](https://github.com/monfresh/laptop/issues/new) (or attach the whole log file to the issue) for me and I'll be glad to help you. If the script doesn't work for you, it's most likely a bug in my script, which I'd love to fix, so please don't hesitate to report any issues.
+[new GitHub Issue](https://github.com/monfresh/laptop/issues/new) (or attach the whole log file to the issue) for me and I'll be glad to help you.
 
 ## How to tell if the script worked
 
-If the last thing the script displayed was "All done!", then everything the script was meant to do worked.
+If the last thing the script displayed was "All done!", then everything the script was meant to do worked. **Now make sure you quit and restart your terminal.**
 
-To verify that the Ruby environment is properly configured, quit and restart Terminal, then run these commands:
+To verify that the Ruby environment is properly configured, run these commands:
 
 ```shell
 ruby -v
