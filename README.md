@@ -327,7 +327,7 @@ brew services start --all
 1. Uninstall chruby-fish if you have it: `brew uninstall chruby-fish`
 1. Clone this fork of `chruby-fish` to your computer:
     ```shell
-    git clone https://github.com/bouk/chruby-fish/tree/rewrite-fish
+    git clone https://github.com/bouk/chruby-fish/
     ```
 2. Check out the `rewrite-fish` branch:
     ```shell

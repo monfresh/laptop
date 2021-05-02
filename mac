@@ -154,7 +154,7 @@ latest_installed_ruby() {
 }
 
 ruby_2_7_2_is_installed() {
-  find "$HOME/.rubies" -maxdepth 1 -name 'ruby-2.7.2'
+  find "$HOME/.rubies" -maxdepth 1 -name 'ruby-2.7.3'
 }
 
 switch_to_ruby() {
@@ -281,16 +281,16 @@ if command -v rbenv >/dev/null || command -v rvm >/dev/null; then
   echo "To uninstall RVM, run 'rvm implode'. To uninstall rbenv, follow the instructions here: https://github.com/rbenv/rbenv#uninstalling-rbenv"
 else
   if ! brew_is_installed "chruby"; then
-    fancy_echo 'Installing chruby, ruby-install, and Ruby 2.7.2 ...'
+    fancy_echo 'Installing chruby, ruby-install, and Ruby 2.7.3 ...'
 
     brew bundle --file=- <<EOF
     brew 'chruby'
     brew 'ruby-install'
 EOF
 
-    ruby-install ruby-2.7.2 -- --with-openssl-dir="$(brew --prefix openssl)"
-    configure_shell_file_for_chruby "2.7.2"
-    switch_to_ruby "2.7.2"
+    ruby-install ruby-2.7.3 -- --with-openssl-dir="$(brew --prefix openssl)"
+    configure_shell_file_for_chruby "2.7.3"
+    switch_to_ruby "2.7.3"
   else
     brew bundle --file=- <<EOF
     brew 'chruby'
@@ -311,19 +311,19 @@ EOF
       fancy_echo 'You have the latest version of Ruby'
     fi
 
-    if ! [ "$(ruby_2_7_2_is_installed)" = "$HOME/.rubies/ruby-2.7.2" ]; then
-      fancy_echo "Installing Ruby 2.7.2 ..."
-      ruby-install ruby-2.7.2 -- --with-openssl-dir="$(brew --prefix openssl)"
-      configure_shell_file_for_chruby "2.7.2"
-      switch_to_ruby "2.7.2"
+    if ! [ "$(ruby_2_7_2_is_installed)" = "$HOME/.rubies/ruby-2.7.3" ]; then
+      fancy_echo "Installing Ruby 2.7.3 ..."
+      ruby-install ruby-2.7.3 -- --with-openssl-dir="$(brew --prefix openssl)"
+      configure_shell_file_for_chruby "2.7.3"
+      switch_to_ruby "2.7.3"
     fi
 
-    configure_shell_file_for_chruby "2.7.2"
+    configure_shell_file_for_chruby "2.7.3"
   fi
 fi
 
 fancy_echo 'Updating Rubygems...'
-switch_to_ruby "2.7.2"
+switch_to_ruby "2.7.3"
 gem update --system
 
 fancy_echo 'Installing or updating Bundler'
