@@ -45,16 +45,13 @@ Supported shells:
 ## Install
 **IMPORTANT! CHECK ALL OF THE ITEMS BELOW BEFORE AND AFTER RUNNING THE SCRIPT!** 
 
-- Make sure your computer meets all [prerequisites](https://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/#prerequisites) first.
+### Check prerequisites
+Make sure your computer meets all [prerequisites](https://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/#prerequisites) first.
 
-- If you are using an M1 (Apple Silicon) Mac, make sure your Terminal is not in Rosetta mode. To check:
-  1. Open a new Finder window.
-  2. Go to Applications -> Utilities. 
-  3. Click once on the Terminal app to select it. 
-  4. Press the `command-i` keyboard shortcut to open the Info window.
-  5. Make sure the "Open using Rosetta" checkbox is unchecked.
+### If you are on an M1 Mac, do not use Rosetta
+Homebrew works natively on M1 Macs. Make sure that whatever terminal app you use is not in Rosetta mode. Read my guide on [installing Ruby on Apple Silicon](https://www.moncefbelyamani.com/how-to-install-homebrew-and-ruby-on-a-mac-with-the-m1-apple-silicon-chip/#how-to-tell-if-you-are-using-terminal-in-rosetta-mode) for more details.
 
-- Quit and relaunch Terminal after running my script. 
+### Quit and relaunch Terminal after running my script
 I mention this several times in this README, as well as when the script finishes successfully, but I'll say it again. For the changes to take effect, you have to "refresh" your terminal. The best way is to quit and relaunch it.
 
 ### Now on to the installation
