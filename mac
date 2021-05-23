@@ -341,12 +341,12 @@ gem install jekyll
 
 fancy_echo '...Finished Ruby installation checks.'
 
-fancy_echo "Installing node 14.16.1 ..."
-if nodenv versions | grep 14.16.1; then
-  fancy_echo "node 14.16.1 already installed."
+fancy_echo "Installing node 14.17.0 ..."
+if nodenv versions | grep 14.17.0; then
+  fancy_echo "node 14.17.0 already installed."
 else
   brew upgrade node-build
-  nodenv install 14.16.1
+  nodenv install 14.17.0
 fi
 fancy_echo 'Configuring Nodenv...'
 configure_shell_file_for_nodenv
