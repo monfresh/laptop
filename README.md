@@ -101,10 +101,10 @@ To verify that the Ruby environment is properly configured, run these commands:
 ruby -v
 ```
 
-This should show `ruby 2.7.2` or `ruby 3.0.0`. If not, try switching manually to 2.7.2:
+This should show `ruby 2.7.3` or `ruby 3.0.1`. If not, try switching manually to 2.7.3:
 
 ```shell
-chruby 2.7.2
+chruby 2.7.3
 ```
 
 and check the version to double check:
@@ -122,7 +122,7 @@ which ruby
 This should point to the `.rubies` directory in your home folder. For example:
 
 ```
-/Users/monfresh/.rubies/ruby-2.7.2/bin/ruby
+/Users/monfresh/.rubies/ruby-2.7.3/bin/ruby
 ```
 
 ## How to create a new Rails app
@@ -135,43 +135,43 @@ Similarly to Rails, [creating a new Jekyll site](https://www.moncefbelyamani.com
 
 ## How to switch between Ruby versions and install different versions
 
-The first time you run the script (assuming you didn't already have `chruby` installed), it will install Ruby 2.7.2, which is the version that is compatible with most gems at the moment. If you run the script again, it will check for newer versions, and it will install Ruby 3.0.0, which was released on December 25, 2020. You will still have Ruby 2.7.2. That's the advantage of using version managers like `chruby`. You can have many different versions installed at the same time and you can switch between them.
+The first time you run the script (assuming you didn't already have `chruby` installed), it will install Ruby 2.7.3, which is the version that is compatible with most gems at the moment. If you run the script again, it will check for newer versions, and it will install Ruby 3.0.1 or later. You will still have Ruby 2.7.3. That's the advantage of using version managers like `chruby`. You can have many different versions installed at the same time and you can switch between them.
 
-**Ruby 3.0 is still very new, so it's not yet fully compatible with gems like Rails or Jekyll. So, before you create a new Rails app or Jekyll site, make sure you're using Ruby 2.7.2. Keep reading for instructions.**
+**Ruby 3.0 is still very new, so it's not yet fully compatible with gems like Rails or Jekyll. So, before you create a new Rails app or Jekyll site, make sure you're using Ruby 2.7.3. Keep reading for instructions.**
 
-To check if you have Ruby 2.7.2 installed, run this command:
+To check if you have Ruby 2.7.3 installed, run this command:
 
 ```shell
-find "$HOME/.rubies" -maxdepth 1 -name 'ruby-2.7.2'
+find "$HOME/.rubies" -maxdepth 1 -name 'ruby-2.7.3'
 ```
 If nothing is returned, then you should install it:
 
 ```shell
-ruby-install ruby-2.7.2
+ruby-install ruby-2.7.3
 ```
 
 To switch to this newly-installed version, run `chruby` followed by the version. For example:
 
 ```shell
-chruby 2.7.2
+chruby 2.7.3
 ```
-You should run `chruby 2.7.2` before you start any new project to make sure you are using the correct version of Ruby.
+You should run `chruby 2.7.3` before you start any new project to make sure you are using the correct version of Ruby.
 
-Another highly-recommended way to automatically switch between versions is to add a `.ruby-version` file in your Ruby project with the version number prefixed with `ruby-`, such as `ruby-2.7.2`. To test that this works:
+Another highly-recommended way to automatically switch between versions is to add a `.ruby-version` file in your Ruby project with the version number prefixed with `ruby-`, such as `ruby-2.7.3`. To test that this works:
 
 1. `cd` into your Ruby project, such as your Rails app or Jekyll site
 2. First, check to see if the file already exists: `cat .ruby-version`. If not, then create it in the next step.
-2. Create a file called `.ruby-version` with `ruby-2.7.2` in it:
+2. Create a file called `.ruby-version` with `ruby-2.7.3` in it:
     ```shell
-    echo 'ruby-2.7.2' >> .ruby-version
+    echo 'ruby-2.7.3' >> .ruby-version
     ```
 1. `cd` into a folder outside of your project, such as your home folder: `cd ~`
 2. Run `ruby -v`. It will probably say `2.6.3p62`, which is the Ruby that came preinstalled on your Mac.
 4. `cd` into your project
-5. Verify that `ruby -v` shows `2.7.2p137`
+5. Verify that `ruby -v` shows `2.7.3p183`
 
-Note that gems only get installed in a specific version of Ruby at a time. If you installed jekyll in 3.0.0,
-and then you install 2.7.2 later, you'll have to install jekyll again in 2.7.2.
+Note that gems only get installed in a specific version of Ruby at a time. If you installed jekyll in 3.0.1,
+and then you install 2.7.3 later, you'll have to install jekyll again in 2.7.3.
 
 ## Check the Node installation
 
@@ -180,7 +180,7 @@ To verify if Node was installed and configured:
 ```shell
 node --version
 ```
-You should see `v14.15.3` or later
+You should see `v14.17.0` or later
 
 ```shell
 nodenv help
